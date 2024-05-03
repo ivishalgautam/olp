@@ -51,7 +51,7 @@ export function CategoryForm({
     // Fetch data from API and populate the form with prefilled values
     const fetchData = async () => {
       try {
-        const data = await http().get(
+        const { data } = await http().get(
           `${endpoints.categories.getAll}/getById/${categoryId}`
         );
 
