@@ -36,8 +36,6 @@ export default function Page({
     queryFn: () => fetchProducts(currPage, limit, categories, brands, part),
   });
 
-  console.log({ data });
-
   return (
     <section className="py-6">
       <div className="container">

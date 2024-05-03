@@ -24,8 +24,6 @@ export default function Search() {
   const throttleTimeoutRef = useRef(null);
   const pathname = usePathname();
 
-  console.log({ searchResults });
-
   const { user } = useContext(MainContext);
   const queryClient = useQueryClient();
   const createMutation = useMutation(addToCart, {

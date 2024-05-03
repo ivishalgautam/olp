@@ -26,8 +26,6 @@ export default function Header() {
     enabled: !!user,
   });
 
-  console.log({ data });
-
   return (
     <header className="">
       <HeaderTop user={user} />

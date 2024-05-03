@@ -32,7 +32,6 @@ export default function LoginForm() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("refreshToken", response.refresh_token);
       router.push("/");
-      // console.log(response);
 
       return response.data;
     } catch (error) {
