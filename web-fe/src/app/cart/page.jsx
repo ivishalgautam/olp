@@ -26,7 +26,7 @@ export default function Page() {
   const createMutation = useMutation(createEnquiry, {
     onSuccess: (data) => {
       toast.success(data.message);
-      queryClient.invalidateQueries("cart");
+      queryClient.invalidateQueries(["cart", "cart-items"]);
       router.push("/");
     },
     onError: (error) => {

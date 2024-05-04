@@ -38,7 +38,7 @@ export default function ProductCard({
   const createMutation = useMutation(addToCart, {
     onSuccess: (data) => {
       toast.success(data.message);
-      queryClient.invalidateQueries("cart");
+      queryClient.invalidateQueries("cart-items");
     },
     onError: (error) => {
       toast.error(error.message);

@@ -22,7 +22,7 @@ export default function Header() {
 
   const { data } = useQuery({
     queryFn: fetchTempCart,
-    queryKey: ["cart"],
+    queryKey: ["cart-items"],
     enabled: !!user,
   });
 
