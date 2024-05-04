@@ -54,17 +54,19 @@ export default async function Page({ params: { slug } }) {
         </div>
 
         {/* description */}
-        <div className="rounded-md bg-white p-8">
-          <div className="border-b">
-            <Button className="rounded-none border-b-2 border-primary bg-transparent p-0 pb-2 text-lg text-primary hover:bg-transparent">
-              Description
-            </Button>
+        {data?.description && (
+          <div className="rounded-md bg-white p-8">
+            <div className="border-b">
+              <Button className="rounded-none border-b-2 border-primary bg-transparent p-0 pb-2 text-lg text-primary hover:bg-transparent">
+                Description
+              </Button>
+            </div>
+            <div
+              className="py-6"
+              dangerouslySetInnerHTML={{ __html: data?.description }}
+            ></div>
           </div>
-          <div
-            className="py-6"
-            dangerouslySetInnerHTML={{ __html: data?.description }}
-          ></div>
-        </div>
+        )}
 
         {/* related products */}
         <div>
