@@ -1,6 +1,6 @@
 "use client";
 import ReactImageGallery from "react-image-gallery";
-import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 export default function ImageSlider({ pictures }) {
   const imageBase = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
