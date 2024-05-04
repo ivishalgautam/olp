@@ -9,7 +9,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "web.onlineparts.shop",
+        hostname: "api.onlineparts.shop",
         port: "",
       },
     ],
