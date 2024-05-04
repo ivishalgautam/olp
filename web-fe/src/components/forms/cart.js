@@ -42,7 +42,7 @@ export default function CartForm({ data, handleCreate }) {
       const index = fields.findIndex((so) => so._id === data.data.id);
       remove(index);
       toast.success(data.message);
-      queryClient.invalidateQueries("cart");
+      queryClient.invalidateQueries(["cart-items", "cart"]);
     },
     onError: (error) => {
       toast.error(error.message);
