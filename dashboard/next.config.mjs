@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "localhost",
         port: "3001",
       },
+      {
+        protocol: "https",
+        hostname: "dashboard.onlineparts.shop",
+        port: "",
+      },
     ],
   },
   reactStrictMode: false,
