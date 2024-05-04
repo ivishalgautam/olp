@@ -151,7 +151,7 @@ export function ProductForm({
           );
         data &&
           data.custom_description &&
-          setValue("descriptions", data?.descriptions);
+          setValue("descriptions", data?.custom_description);
         data && setPictures(data?.pictures);
         data && setTags(data?.tags);
         if (!editorRef.current) {
