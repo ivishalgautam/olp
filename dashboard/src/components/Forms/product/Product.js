@@ -151,10 +151,7 @@ export function ProductForm({
           );
         data &&
           data.custom_description &&
-          data?.custom_description?.map(({ key, value }) => {
-            remove();
-            append({ key, value });
-          });
+          setValue("descriptions", data?.descriptions);
         data && setPictures(data?.pictures);
         data && setTags(data?.tags);
         if (!editorRef.current) {
