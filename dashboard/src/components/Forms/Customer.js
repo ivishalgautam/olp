@@ -44,8 +44,6 @@ export function CustomerForm({
     cpassword: false,
   });
 
-  console.log(watch());
-
   const onSubmit = (data) => {
     if (type === "delete") {
       return handleDelete({ id: customerId });
@@ -74,9 +72,10 @@ export function CustomerForm({
     // Fetch data from API and populate the form with prefilled values
     const fetchData = async () => {
       try {
-        const data = await http().get(
+        const { data } = await http().get(
           `${endpoints.users.getAll}/${customerId}`
         );
+        console.log({ data });
         data && setValue("first_name", data?.first_name);
         data && setValue("last_name", data?.last_name);
         data && setValue("mobile_number", data?.mobile_number);

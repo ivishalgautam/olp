@@ -25,7 +25,6 @@ export const columns = (setType, openModal, setCategoryId) => [
     },
     cell: ({ row }) => {
       const image = row.original.image;
-      console.log({ image });
       return (
         <Image
           src={`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${image}`}
@@ -47,6 +46,22 @@ export const columns = (setType, openModal, setCategoryId) => [
         >
           Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return (
+        <Button
+          variant="ghost"
+          className="uppercase"
+          onClick={() => {
+            setCategoryId(id);
+            setType("edit");
+            openModal();
+          }}
+        >
+          {row.getValue("name")}
         </Button>
       );
     },

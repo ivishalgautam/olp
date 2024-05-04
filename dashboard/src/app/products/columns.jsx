@@ -53,7 +53,7 @@ export const columns = (setType, openModal, setProductId) => [
       return (
         <div className={`capitalize`}>
           <Link
-            href={`/products/${id}/view`}
+            href={`/products/${id}/edit`}
             className="hover:text-primary transition-colors"
           >
             {row.original.title}

@@ -31,6 +31,22 @@ export const columns = (setType, openModal, setBrandId) => [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return (
+        <Button
+          variant="ghost"
+          className="uppercase"
+          onClick={() => {
+            setBrandId(id);
+            setType("edit");
+            openModal();
+          }}
+        >
+          {row.getValue("name")}
+        </Button>
+      );
+    },
   },
   {
     id: "actions",

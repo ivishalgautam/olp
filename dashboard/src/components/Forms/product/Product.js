@@ -692,16 +692,9 @@ export function ProductForm({
                   <Input
                     type="text"
                     placeholder="Enter title tag"
-                    {...register("meta_title", {
-                      required: "Please enter title tag.",
-                    })}
+                    {...register("meta_title")}
                     disabled={type === "view"}
                   />
-                  {errors.meta_title && (
-                    <span className="text-red-600">
-                      {errors.meta_title.message}
-                    </span>
-                  )}
                 </div>
 
                 {/* meta descrition */}
@@ -712,16 +705,9 @@ export function ProductForm({
                   <Input
                     type="text"
                     placeholder="Enter meta description tag"
-                    {...register("meta_description", {
-                      required: "Please enter meta description tag.",
-                    })}
+                    {...register("meta_description")}
                     disabled={type === "view"}
                   />
-                  {errors.meta_description && (
-                    <span className="text-red-600">
-                      {errors.meta_description.message}
-                    </span>
-                  )}
                 </div>
               </div>
             </div>

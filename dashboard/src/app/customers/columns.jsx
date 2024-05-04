@@ -42,7 +42,14 @@ export const columns = (
       );
     },
     cell: ({ row }) => {
-      return <div className="capitalize">{row.getValue("first_name")}</div>;
+      const id = row.original.id;
+      return (
+        <div className="capitalize">
+          <Link href={`/customers/${id}/edit`}>
+            {row.getValue("first_name")}
+          </Link>
+        </div>
+      );
     },
   },
   {
@@ -72,7 +79,6 @@ export const columns = (
     },
     cell: ({ row }) => {
       const is_active = row.original.is_active;
-      console.log({ is_active });
       const id = row.original.id;
       return (
         <div className="flex items-center justify-start gap-2">
