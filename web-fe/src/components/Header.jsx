@@ -43,7 +43,10 @@ export const HeaderTop = ({ user }) => {
           <FaPhone />
           <span>+91 9811632400</span>
         </div>
-        <Link href={user ? "/customer/profile" : "/login"}>
+        <Link
+          href={user ? "/customer/profile" : "/login"}
+          className="capitalize"
+        >
           {user ? `${user?.first_name} ${user?.last_name}` : "Log In / Sign Up"}
         </Link>
       </div>
