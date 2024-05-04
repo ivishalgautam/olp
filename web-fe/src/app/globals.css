@@ -103,9 +103,23 @@
 }
 
 .mySwiper1 {
-  height: 20%;
+  height: auto;
   box-sizing: border-box;
   padding: 10px 0;
+}
+
+.mySwiper1 .swiper-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.mySwiper1 .swiper-wrapper .swiper-slide {
+  width: 100% !important;
+}
+
+.image-gallery-image {
+  filter: brightness(0.96);
+  border-radius: 8px;
 }
 
 .mySwiper1 .swiper-slide {
