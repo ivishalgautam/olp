@@ -23,8 +23,22 @@ import {
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export function DataTable({ columns, data }) {
+export function DataTable({ columns, data, totalPage }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = parseInt(Math.max(1, searchParams.get("page")));
+  const limit = parseInt(Math.max(10, searchParams.get("limit")));
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const table = useReactTable({
@@ -40,11 +54,16 @@ export function DataTable({ columns, data }) {
       sorting,
       columnFilters,
     },
+    initialState: {
+      pagination: {
+        pageSize: limit,
+      },
+    },
   });
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 space-x-4">
         <Input
           placeholder="Filter products..."
           value={table?.getColumn("title")?.getFilterValue() ?? ""}
@@ -53,6 +72,25 @@ export function DataTable({ columns, data }) {
           }
           className="max-w-sm"
         />
+        <Select
+          onValueChange={(value) => router.push(`?page=${page}&limit=${value}`)}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select row size" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Sizes</SelectLabel>
+              <SelectItem value="10">10 rows</SelectItem>
+              <SelectItem value="20">20 rows</SelectItem>
+              <SelectItem value="50">50 rows</SelectItem>
+              <SelectItem value="100">100 rows</SelectItem>
+              <SelectItem value="200">200 rows</SelectItem>
+              <SelectItem value="500">500 rows</SelectItem>
+              <SelectItem value="1000">1000 rows</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="rounded-md border">
@@ -110,16 +148,20 @@ export function DataTable({ columns, data }) {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table?.previousPage()}
-          disabled={!table?.getCanPreviousPage()}
+          // onClick={() => table?.previousPage()}
+          // disabled={!table?.getCanPreviousPage()}
+          onClick={() => router.push(`?page=${page - 1}&limit=${limit}`)}
+          disabled={page == 1}
         >
           Previous
         </Button>
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table?.nextPage()}
-          disabled={!table?.getCanNextPage()}
+          // onClick={() => table?.nextPage()}
+          // disabled={!table?.getCanNextPage()}
+          onClick={() => router.push(`?page=${page + 1}&limit=${limit}`)}
+          disabled={page == totalPage}
         >
           Next
         </Button>

@@ -10,6 +10,7 @@ import http from "@/utils/http";
 import { endpoints } from "../../utils/endpoints.js";
 import { toast } from "sonner";
 import { isObject } from "@/utils/object";
+import { useRouter } from "next/navigation.js";
 
 async function deleteEnquiry({ id }) {
   return http().delete(`${endpoints.enquiries.getAll}/${id}`);
@@ -22,6 +23,8 @@ async function fetchEnquiries() {
 
 export default function Products() {
   const queryClient = useQueryClient();
+  const router = useRouter();
+
   const { data, isLoading, isError, error } = useQuery({
     queryFn: fetchEnquiries,
     queryKey: ["enquiries"],
@@ -40,6 +43,10 @@ export default function Products() {
       }
     },
   });
+
+  function handleNavigate(href) {
+    router.push(href);
+  }
 
   const handleDelete = async ({ id }) => {
     deleteMutation.mutate({ id });
@@ -60,7 +67,10 @@ export default function Products() {
       </div>
 
       <div>
-        <DataTable columns={columns(handleDelete)} data={data} />
+        <DataTable
+          columns={columns(handleDelete, handleNavigate)}
+          data={data}
+        />
       </div>
     </div>
   );

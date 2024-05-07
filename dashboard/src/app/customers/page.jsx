@@ -15,11 +15,14 @@ import { endpoints } from "../../utils/endpoints.js";
 import { toast } from "sonner";
 import { isObject } from "@/utils/object";
 import { CustomerForm } from "../../components/Forms/Customer.js";
+import { useRouter } from "next/navigation.js";
 async function deleteCustomer(data) {
   return http().delete(`${endpoints.users.getAll}/${data.id}`);
 }
 
 export default function Customers() {
+  const router = useRouter();
+
   const [type, setType] = useState(null);
   const [isModal, setIsModal] = useState(false);
   const [customerId, setCustomerId] = useState(null);
@@ -31,6 +34,10 @@ export default function Customers() {
 
   function closeModal() {
     setIsModal(false);
+  }
+
+  function handleNavigate(href) {
+    router.push(href);
   }
 
   const deleteMutation = useMutation(deleteCustomer, {
@@ -88,7 +95,8 @@ export default function Customers() {
             setType,
             openModal,
             setCustomerId,
-            handleCustomerStatus
+            handleCustomerStatus,
+            handleNavigate
           )}
           data={data}
         />

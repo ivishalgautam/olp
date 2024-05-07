@@ -16,7 +16,7 @@ import {
 import moment from "moment";
 import { cn } from "@/lib/utils";
 
-export const columns = (setType, openModal, setProductId) => [
+export const columns = (setType, openModal, setProductId, handleNavigate) => [
   {
     accessorKey: "pictures",
     header: ({ column }) => {
@@ -127,12 +127,16 @@ export const columns = (setType, openModal, setProductId) => [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Link href={`/products/${id}/view`}>View</Link>
+            <DropdownMenuItem
+              onClick={() => handleNavigate(`/products/${id}/view`)}
+            >
+              View
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/products/${id}/edit`}>Edit</Link>
+            <DropdownMenuItem
+              onClick={() => handleNavigate(`/products/${id}/edit`)}
+            >
+              Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

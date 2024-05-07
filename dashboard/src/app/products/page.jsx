@@ -14,19 +14,35 @@ import http from "@/utils/http";
 import { endpoints } from "../../utils/endpoints.js";
 import { toast } from "sonner";
 import { isObject } from "@/utils/object";
+import { useRouter, useSearchParams } from "next/navigation";
 
 async function deleteProduct(data) {
   return http().delete(`${endpoints.products.getAll}/${data.id}`);
 }
 
+const fetchProducts = async (page, limit) => {
+  return await http().get(
+    `${endpoints.products.getAll}?page=${page}&limit=${limit}`
+  );
+};
+
 export default function Products() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page")
+    ? parseInt(searchParams.get("page"))
+    : 1;
+  const limit = searchParams.get("limit")
+    ? parseInt(searchParams.get("limit"))
+    : 10;
   const [type, setType] = useState(null);
   const [isModal, setIsModal] = useState(false);
   const [productId, setProductId] = useState(null);
   const queryClient = useQueryClient();
-  const { data, isLoading, isError, error } = useFetchProducts();
-
-  // console.log({ data });
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["products", page, limit],
+    queryFn: () => fetchProducts(page, limit),
+  });
 
   function openModal() {
     setIsModal(true);
@@ -34,6 +50,10 @@ export default function Products() {
 
   function closeModal() {
     setIsModal(false);
+  }
+
+  function handleNavigate(href) {
+    router.push(href);
   }
 
   const deleteMutation = useMutation(deleteProduct, {
@@ -88,8 +108,15 @@ export default function Products() {
 
       <div>
         <DataTable
-          columns={columns(setType, openModal, setProductId, publishProduct)}
-          data={data}
+          columns={columns(
+            setType,
+            openModal,
+            setProductId,
+            publishProduct,
+            handleNavigate
+          )}
+          data={data?.data}
+          totalPage={data?.total_page}
         />
       </div>
 
