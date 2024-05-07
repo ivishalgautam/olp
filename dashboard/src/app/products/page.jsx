@@ -77,12 +77,11 @@ export default function Products() {
   async function publishProduct(productId, value) {
     try {
       const response = await http().put(
-        `${endpoints.products.getAll}/publish/${productId}`,
+        `${endpoints.products.getAll}/${productId}`,
         { is_published: value }
       );
       toast.success(response.message);
       queryClient.invalidateQueries({ queryKey: ["products"] });
-      console.log({ response });
     } catch (error) {
       console.log(error);
     }

@@ -16,7 +16,13 @@ import {
 import moment from "moment";
 import { cn } from "@/lib/utils";
 
-export const columns = (setType, openModal, setProductId, handleNavigate) => [
+export const columns = (
+  setType,
+  openModal,
+  setProductId,
+  publishProduct,
+  handleNavigate
+) => [
   {
     accessorKey: "pictures",
     header: ({ column }) => {
