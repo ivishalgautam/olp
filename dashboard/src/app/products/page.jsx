@@ -2,7 +2,6 @@
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useFetchProducts } from "../../hooks/useFetchProducts";
 import Spinner from "@/components/Spinner";
 import { useState } from "react";
 import { DataTable } from "./data-table";
