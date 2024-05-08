@@ -45,11 +45,12 @@ export const columns = (
     cell: ({ row }) => {
       const id = row.original.id;
       return (
-        <div className="capitalize">
-          <Link href={`/customers/${id}/edit`}>
-            {row.getValue("first_name")}
-          </Link>
-        </div>
+        <Link
+          className="capitalize hover:text-primary"
+          href={`/customers/${id}/edit`}
+        >
+          {row.getValue("first_name")}
+        </Link>
       );
     },
   },

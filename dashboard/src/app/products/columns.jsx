@@ -59,7 +59,7 @@ export const columns = (
       return (
         <Link
           href={`/products/${id}/edit`}
-          className="hover:text-primary transition-colors capitalize"
+          className="hover:text-primary capitalize"
         >
           {row.original.title}
         </Link>
