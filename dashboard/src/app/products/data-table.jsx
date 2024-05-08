@@ -73,7 +73,7 @@ export function DataTable({ columns, data, totalPage }) {
           className="max-w-sm"
         />
         <Select
-          onValueChange={(value) => router.push(`?page=${page}&limit=${value}`)}
+          onValueChange={(value) => router.push(`?page=1&limit=${value}`)}
         >
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select row size" />
