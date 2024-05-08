@@ -36,12 +36,12 @@ export default function Chart() {
   return (
     <Card>
       <div className="p-8">
-        <span className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+        {/* <span className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
           Total Requests
         </span>
         <p className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
           6,568
-        </p>
+        </p> */}
         <div>
           <AreaChart
             className="h-80"
