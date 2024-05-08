@@ -57,14 +57,12 @@ export const columns = (
     cell: ({ row }) => {
       const id = row.original.id;
       return (
-        <div className={`capitalize`}>
-          <Link
-            href={`/products/${id}/edit`}
-            className="hover:text-primary transition-colors"
-          >
-            {row.original.title}
-          </Link>
-        </div>
+        <Link
+          href={`/products/${id}/edit`}
+          className="hover:text-primary transition-colors capitalize"
+        >
+          {row.original.title}
+        </Link>
       );
     },
   },
