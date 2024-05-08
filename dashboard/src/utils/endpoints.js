@@ -48,5 +48,6 @@ export const endpoints = {
   },
   dashboard: {
     getAll: "/dashboard",
+    stats: "/dashboard/stats",
   },
 };
