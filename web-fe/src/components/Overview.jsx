@@ -1,6 +1,6 @@
 "use client";
 import { MainContext } from "@/store/context";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { H4, P, Small } from "./ui/typography";
 
 export default function Overview() {

@@ -1,8 +1,6 @@
 "use client";
 import { MainContext } from "@/store/context";
-import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { H4, H6, Small } from "@/components/ui/typography";
 import { IoBagHandleOutline, IoCartOutline } from "react-icons/io5";

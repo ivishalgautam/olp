@@ -1,8 +1,6 @@
 import axios from "axios";
 import { getHeader } from "./header";
 import { endpoints } from "./endpoints";
-import { logout } from "@/components/Navbar";
-import { setCookie } from "./cookies";
 
 // Default API will be your root
 const API_ROOT = process.env.NEXT_PUBLIC_API_URL;

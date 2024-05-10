@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { Input } from "./ui/input";
 import { searchProducts } from "@/hooks/useSearchProducts";

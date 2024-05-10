@@ -1,13 +1,10 @@
 "use client";
 
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-  SortingState,
   getSortedRowModel,
-  ColumnFiltersState,
   getFilteredRowModel,
   getPaginationRowModel,
 } from "@tanstack/react-table";
@@ -67,7 +64,7 @@ export function DataTable({ columns, data }) {
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -86,7 +83,7 @@ export function DataTable({ columns, data }) {
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

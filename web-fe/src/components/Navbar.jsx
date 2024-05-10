@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MdOutlineLocalPhone, MdOutlineShoppingCart } from "react-icons/md";

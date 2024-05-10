@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { H3 } from "./ui/typography";
 import Spinner from "./Spinner";
 import { useQuery } from "@tanstack/react-query";

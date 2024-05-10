@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { H1, P, Small } from "@/components/ui/typography";
+import { H1, Small } from "@/components/ui/typography";
 import { useForm, Controller } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";

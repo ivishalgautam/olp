@@ -1,5 +1,5 @@
 "use client";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
 export default function PaginationControls({ total_page }) {

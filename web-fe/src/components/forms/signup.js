@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { H1, P } from "../ui/typography";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import PhoneInput from "react-phone-number-input";
 import { useMutation } from "@tanstack/react-query";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";

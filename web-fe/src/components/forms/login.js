@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { H1, P } from "../ui/typography";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";

@@ -1,6 +1,6 @@
 "use client";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import BrowseCategory from "./browse-category";

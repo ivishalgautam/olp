@@ -1,5 +1,4 @@
 import PaginationControls from "@/components/PaginationControls";
-import AllProducts from "@/components/all-products";
 import ProductCard from "@/components/cards/product";
 import SidebarBrands from "@/components/layout/sidebar-brands";
 import SidebarCategories from "@/components/layout/sidebar-categories";

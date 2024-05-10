@@ -1,4 +1,3 @@
-import React from "react";
 import { IoMdPaperPlane } from "react-icons/io";
 import { H4, P } from "./ui/typography";
 import { Input } from "./ui/input";

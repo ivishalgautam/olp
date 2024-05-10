@@ -2,9 +2,7 @@
 import { useEffect, createContext, useState } from "react";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
-import { toast } from "sonner";
 import { usePathname } from "next/navigation";
-import Spinner from "@/components/Spinner";
 
 export const MainContext = createContext(null);
 

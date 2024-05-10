@@ -1,14 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import { LuBarChartHorizontal } from "react-icons/lu";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Spinner from "./Spinner";
-import { ScrollArea } from "./ui/scroll-area";
 import {
   NavigationMenu,
   NavigationMenuContent,

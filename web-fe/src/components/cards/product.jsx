@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { H6 } from "../ui/typography";
 import { Button } from "../ui/button";
@@ -11,12 +11,6 @@ import { toast } from "sonner";
 import { MainContext } from "@/store/context";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
 
 const addToCart = (data) => {
   return http().post(`${endpoints.cart.getAll}/temp-cart`, data);

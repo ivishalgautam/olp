@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { H5 } from "../ui/typography";
 import { endpoints } from "@/utils/endpoints";
 import http from "@/utils/http";

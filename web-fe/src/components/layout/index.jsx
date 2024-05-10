@@ -1,11 +1,10 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { allRoutes } from "@/data/routes";
 import { MainContext } from "@/store/context";
-import Spinner from "../Spinner";
 
 export default function Layout({ children }) {
   const pathname = usePathname();

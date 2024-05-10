@@ -1,7 +1,7 @@
 "use client";
 import { MainContext } from "@/store/context";
-import { useContext, useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { H4 } from "../ui/typography";
 import { Label } from "../ui/label";
@@ -10,8 +10,6 @@ import { useMutation } from "@tanstack/react-query";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
-import { DatePicker } from "../ui/date-picker";
-import moment from "moment";
 
 const update = async (data) => {
   return await http().put(`${endpoints.users.getAll}/${data.id}`, data);
@@ -22,7 +20,6 @@ export default function ProfileForm() {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
   } = useForm({
     defaultValues: {
