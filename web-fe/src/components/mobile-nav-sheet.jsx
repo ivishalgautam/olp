@@ -41,7 +41,6 @@ export default function MobileNavSheet() {
                   <Link
                     href={href}
                     className="h-full w-full text-sm font-semibold text-white"
-                    onClick={() => setMobileNavActive(false)}
                   >
                     {title}
                   </Link>
@@ -50,10 +49,7 @@ export default function MobileNavSheet() {
             </ul>
           </nav>
           <div className="py-6 text-sm font-medium text-white">
-            <Link
-              onClick={() => setMobileNavActive(false)}
-              href={user ? "/customer/overview" : "/login"}
-            >
+            <Link href={user ? "/customer/overview" : "/login"}>
               {user
                 ? `${user?.first_name} ${user?.last_name}`
                 : "Log In / Sign Up"}
