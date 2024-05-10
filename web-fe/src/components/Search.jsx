@@ -81,7 +81,7 @@ export default function Search() {
   }, [pathname]);
 
   return (
-    <div className="h-full w-full">
+    <div className="relative h-full w-full">
       <div className="relative">
         <Input
           placeholder="Search for items"
@@ -104,13 +104,13 @@ export default function Search() {
       </div>
       {inputVal && searchResults.length > 0 && (
         <div
-          className="absolute inset-0 z-20"
+          className="absolute inset-0 z-50"
           onClick={() => {
             setSearchResults([]);
           }}
         >
           {searchResults.length > 0 ? (
-            <ul className="absolute left-1/2 -translate-x-1/2 translate-y-36 divide-y divide-gray-200 rounded-md bg-white">
+            <ul className="absolute -top-full left-1/2 h-80 w-full -translate-x-1/2 translate-y-32 divide-y divide-gray-200 overflow-y-scroll rounded-md bg-white">
               {searchResults.map((result) => (
                 <li
                   key={result.id}

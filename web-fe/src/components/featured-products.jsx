@@ -7,17 +7,20 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "./Spinner";
 
 const fetchProducts = async () => {
-  return await http().get(`${endpoints.products.getAll}?featured=true`);
+  const { data } = await http().get(
+    `${endpoints.products.getAll}?featured=true`,
+  );
+  return data;
 };
 
 export default function FeaturedProducts() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["products"],
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["featured-products"],
     queryFn: fetchProducts,
   });
 
   if (isLoading) return <Spinner />;
-
+  if (isError) return error.message ?? "error";
   // console.log({ products: data });
   return (
     <div className="pb-10">
@@ -27,12 +30,12 @@ export default function FeaturedProducts() {
           products
         </H3>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-          {!data?.data?.length ? (
+          {!data?.length ? (
             <P>Not found!</P>
           ) : (
-            data?.data?.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))
+            data
+              ?.slice(0, 12)
+              ?.map((product) => <ProductCard key={product.id} {...product} />)
           )}
         </div>
       </div>

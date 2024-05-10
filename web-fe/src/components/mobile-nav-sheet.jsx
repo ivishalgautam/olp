@@ -1,31 +1,33 @@
 "use client";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { RxCross2 } from "react-icons/rx";
 import BrowseCategory from "./browse-category";
 import Search from "./Search";
 import { navList } from "./Navbar";
 import Link from "next/link";
 import { FaPhone } from "react-icons/fa";
 import { MainContext } from "@/store/context";
+import { Menu } from "lucide-react";
 
-export default function MobileNavigation({ setMobileNavActive }) {
+export default function MobileNavSheet() {
   const { user } = useContext(MainContext);
+
   return (
-    <div className="shadow-md">
-      <div className="h-screen w-full md:hidden">
-        <div className="flex items-center justify-between bg-white p-4">
-          <Image width={100} height={100} src={"/logo.png"} alt="logo" />
-          <Button
-            size="icon"
-            className="bg-transparent text-black hover:bg-black/10"
-            onClick={() => setMobileNavActive(false)}
-          >
-            <RxCross2 size={30} />
-          </Button>
-        </div>
-        <div className="h-full divide-y-2 divide-primary-foreground bg-primary p-4">
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="text-white">
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="bg-primary p-0 lg:hidden">
+        <SheetHeader>
+          <div className="flex items-center justify-between bg-white p-4">
+            <Image width={100} height={100} src={"/logo.png"} alt="logo" />
+          </div>
+        </SheetHeader>
+        <div className="grid divide-y-2 divide-primary-foreground p-4 py-4">
           <div className="py-6">
             <Search />
           </div>
@@ -62,7 +64,7 @@ export default function MobileNavigation({ setMobileNavActive }) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 }

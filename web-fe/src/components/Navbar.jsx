@@ -4,15 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdOutlineLocalPhone, MdOutlineShoppingCart } from "react-icons/md";
 import { redirect } from "next/navigation";
-import { FaBars } from "react-icons/fa6";
 import { RiUser3Line } from "react-icons/ri";
-import { Button } from "./ui/button";
-import MobileNavigation from "./mobile-navigation";
 import BrowseCategory from "./browse-category";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { useQuery } from "@tanstack/react-query";
 import { MainContext } from "@/store/context";
+import MobileNavSheet from "./mobile-nav-sheet";
 
 export const navList = [
   { title: "Home", href: "/" },
@@ -34,7 +32,6 @@ export function logout() {
 }
 
 export default function Navbar() {
-  const [mobileNavActive, setMobileNavActive] = useState(false);
   const { user } = useContext(MainContext);
   const { data, isFetching } = useQuery({
     queryFn: fetchTempCart,
@@ -89,21 +86,10 @@ export default function Navbar() {
               >
                 <RiUser3Line size={25} fill="#fff" />
               </Link>
+              <MobileNavSheet />
             </div>
-            <Button
-              size="icon"
-              className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
-              onClick={() => setMobileNavActive(true)}
-            >
-              <FaBars fill="#fff" size={25} />
-            </Button>
           </div>
         </div>
-      </div>
-      <div
-        className={`absolute top-0 z-50 w-full max-w-[25rem] transition-all duration-500 ${mobileNavActive ? "right-0" : "-right-[25rem]"}`}
-      >
-        <MobileNavigation setMobileNavActive={setMobileNavActive} />
       </div>
     </div>
   );

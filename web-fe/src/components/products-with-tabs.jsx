@@ -9,7 +9,10 @@ import { P } from "./ui/typography";
 import Spinner from "./Spinner";
 
 const fetchProducts = async (type) => {
-  return await http().get(`${endpoints.products.getAll}?type=${type}`);
+  const { data } = await http().get(
+    `${endpoints.products.getAll}?type=${type}`,
+  );
+  return data;
 };
 
 export default function ProductsWithTabs() {
@@ -44,12 +47,12 @@ export default function ProductsWithTabs() {
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
           {isLoading && <Spinner />}
-          {!data?.data?.length ? (
+          {!data?.length ? (
             <P>Not found!</P>
           ) : (
-            data?.data?.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))
+            data
+              ?.slice(0, 12)
+              .map((product) => <ProductCard key={product.id} {...product} />)
           )}
         </div>
       </div>
