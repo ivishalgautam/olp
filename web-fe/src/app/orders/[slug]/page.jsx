@@ -20,7 +20,7 @@ import Spinner from "@/components/Spinner";
 export default function Page({ params: { slug } }) {
   const { data, isLoading } = useQuery({
     queryFn: fetchOrderItems,
-    queryKey: ["orders"],
+    queryKey: ["order-items"],
     enabled: !!slug,
   });
 
@@ -74,10 +74,10 @@ export default function Page({ params: { slug } }) {
               <TableCell>{field.quantity}</TableCell>
 
               {/* dispatched quantity */}
-              <TableCell>{field.dispatched_quantity}</TableCell>
+              <TableCell>{field.dispatched_quantity ?? "N/A"}</TableCell>
 
               {/* comment */}
-              <TableCell>{field.comment}</TableCell>
+              <TableCell>{field.comment ?? "not found"}</TableCell>
             </TableRow>
           ))}
         </TableBody>

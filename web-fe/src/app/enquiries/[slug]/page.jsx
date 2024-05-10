@@ -85,7 +85,6 @@ export default function Page({ params: { slug } }) {
         const { data } = await http().get(
           `${endpoints.enquiries.getAll}/${id}`,
         );
-        console.log({ data });
         remove();
         data && setValue("status", data.status);
         data &&
@@ -217,7 +216,7 @@ export default function Page({ params: { slug } }) {
           </Table>
 
           {fields?.length > 0 && (
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-end">
               <Button
                 type="button"
                 variant="default"
@@ -225,9 +224,9 @@ export default function Page({ params: { slug } }) {
               >
                 Convert to order
               </Button>
-              <Button type="submit" variant="primary">
+              {/* <Button type="submit" variant="primary">
                 Submit query
-              </Button>
+              </Button> */}
             </div>
           )}
         </form>
