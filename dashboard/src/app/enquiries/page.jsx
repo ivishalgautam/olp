@@ -1,7 +1,5 @@
 "use client";
 import Title from "@/components/Title";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Spinner from "@/components/Spinner";
 import { DataTable } from "./data-table.jsx";
 import { columns } from "./columns.jsx";

@@ -1,5 +1,4 @@
 "use client";
-import React, { useContext } from "react";
 import Image from "next/image";
 import { H6 } from "../ui/typography";
 import { Button } from "../ui/button";
@@ -7,7 +6,6 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import http from "@/utils/http";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { MainContext } from "@/store/context";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { endpoints } from "../../utils/endpoints";

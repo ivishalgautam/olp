@@ -1,23 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import http from "@/utils/http";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectItem,
-  SelectContent,
-} from "../../../components/ui/select";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { useFetchCustomers } from "@/hooks/useFetchCustomers";
 import Title from "@/components/Title";
-import { Button } from "@/components/ui/button";
 import { useFetchProducts } from "@/hooks/useFetchProducts";
 import ProductCard from "@/components/cards/Product";
 import { toast } from "sonner";
-import { IoTrashOutline } from "react-icons/io5";
 import { endpoints } from "../../../utils/endpoints";
 
 const addToCart = (data) => {

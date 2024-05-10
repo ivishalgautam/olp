@@ -4,7 +4,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
-import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { useQuery } from "@tanstack/react-query";
 import Title from "../Title";

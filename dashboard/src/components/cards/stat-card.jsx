@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card.jsx";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card.jsx";
 import { IoIosStats } from "react-icons/io";
 
 export default function StatCard({ status, count }) {

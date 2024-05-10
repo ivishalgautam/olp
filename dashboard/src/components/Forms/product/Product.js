@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useFetchCategories } from "../../../hooks/useFetchCategories";
 import useLocalStorage from "@/hooks/useLocalStorage.js";

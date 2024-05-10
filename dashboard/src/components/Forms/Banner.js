@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Title from "../Title";
 import http from "@/utils/http";
@@ -136,10 +136,10 @@ export function BannerForm({
             type === "create"
               ? "Create banner"
               : type === "view"
-              ? "Banner details"
-              : type === "edit"
-              ? "Edit banner"
-              : "Are you sure you want to delete"
+                ? "Banner details"
+                : type === "edit"
+                  ? "Edit banner"
+                  : "Are you sure you want to delete"
           }
         />
 
@@ -264,8 +264,8 @@ export function BannerForm({
               {type === "create"
                 ? "Create"
                 : type === "edit"
-                ? "Update"
-                : "Delete"}
+                  ? "Update"
+                  : "Delete"}
             </Button>
           )}
         </div>

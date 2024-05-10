@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "../../components/ui/button";
 import { ArrowUpDown } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
@@ -27,7 +26,6 @@ export const columns = (setType, openModal, setProductId) => [
       const id = row.original.id;
       return (
         <Small className={"bg-primary text-white rounded-full p-1 px-2"}>
-          
           {id}
         </Small>
       );

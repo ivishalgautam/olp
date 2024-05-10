@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { Controller, useForm } from "react-hook-form";
@@ -9,17 +9,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FaRegEye } from "react-icons/fa";
 import { Checkbox } from "../ui/checkbox";
-import ReactSelect from "react-select";
-
-import "react-phone-number-input/style.css";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
 import { countries } from "../../data/countryCodes";
+import ReactSelect from "react-select";
 
 export function CustomerForm({
   type,
@@ -35,7 +26,6 @@ export function CustomerForm({
     setValue,
     watch,
     reset,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -75,7 +65,6 @@ export function CustomerForm({
         const { data } = await http().get(
           `${endpoints.users.getAll}/${customerId}`
         );
-        console.log({ data });
         data && setValue("first_name", data?.first_name);
         data && setValue("last_name", data?.last_name);
         data && setValue("mobile_number", data?.mobile_number);

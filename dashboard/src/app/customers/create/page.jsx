@@ -2,7 +2,7 @@
 
 import http from "@/utils/http";
 import { CustomerForm } from "../../../components/Forms/Customer.js";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { isObject } from "@/utils/object";

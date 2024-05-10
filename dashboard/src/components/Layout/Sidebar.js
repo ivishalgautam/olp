@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AllRoutes } from "@/data/sidebarData";

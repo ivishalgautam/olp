@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { Toaster } from "sonner";
 import Context from "@/store/context";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import { PrimeReactProvider } from "primereact/api";
 
 export default function RootLayout({ children }) {
   const queryClient = new QueryClient({

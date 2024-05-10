@@ -3,7 +3,6 @@ import Title from "@/components/Title";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import Modal from "@/components/Modal";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import QueryForm from "@/components/Forms/Query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
