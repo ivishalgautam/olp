@@ -5,8 +5,21 @@ import { Button } from "@/components/ui/button";
 import { H3, P } from "@/components/ui/typography";
 import { fetchProduct } from "@/utils/api";
 
+export async function generateMetadata({ params: { slug } }) {
+  const { data } = await fetchProduct(slug);
+  return {
+    title: data?.meta_title ?? data?.title,
+    description: data?.meta_description,
+    keywords: data?.meta_keywords,
+    openGraph: {
+      images: data?.pictures,
+    },
+  };
+}
+
 export default async function Page({ params: { slug } }) {
   const { data } = await fetchProduct(slug);
+
   return (
     <section className="py-14">
       <div className="container space-y-10">

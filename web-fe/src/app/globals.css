@@ -142,4 +142,8 @@
 .swiper-button-prev,
 .swiper-button-next {
   color: #fdac21 !important;
+  background: black;
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 999999px;
 }
