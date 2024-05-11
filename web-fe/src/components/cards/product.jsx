@@ -62,7 +62,7 @@ export default function ProductCard({
       </span>
       <div className="flex flex-col gap-1">
         <Link href={`/products/${slug}`}>
-          <figure className="overflow-hidden rounded-lg">
+          <figure className="h-36 w-36 overflow-hidden rounded-lg">
             <Image
               width={500}
               height={500}

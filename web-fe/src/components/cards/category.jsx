@@ -6,10 +6,10 @@ export default function CategoryCard({ slug, image, name }) {
     <Link href={`/categories/${slug}`}>
       <div className="flex flex-col items-center justify-center rounded-md bg-white p-3 shadow-sm">
         <div>
-          <figure>
+          <figure className="h-36 w-36">
             <Image
-              width={400}
-              height={400}
+              width={200}
+              height={200}
               src={`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${image}`}
               alt={name}
               className="h-full w-full rounded object-cover object-center"

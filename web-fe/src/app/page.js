@@ -5,7 +5,7 @@ import FeaturedCategories from "@/components/featured-categories";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="space-y-8">
       <Hero />
       <FeaturedCategories />
       <ProductsWithTabs />

@@ -3,6 +3,7 @@ import { useEffect, createContext, useState } from "react";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { usePathname } from "next/navigation";
+import Spinner from "@/components/Spinner";
 
 export const MainContext = createContext(null);
 
@@ -14,21 +15,24 @@ function Context({ children }) {
   useEffect(() => {
     setIsUserLoading(true);
     async function fetchData() {
-      await http()
-        .get(endpoints.profile)
-        .then((data) => {
-          setUser(data);
-          setIsUserLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsUserLoading(false);
-        });
+      try {
+        const response = await http().get(endpoints.profile);
+        console.log({ response });
+        setUser(response);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsUserLoading(false);
+      }
     }
-    if (!["/login", "/signup"].includes(pathname)) fetchData();
+    if (!["/", "/login", "/signup"].includes(pathname)) {
+      fetchData();
+    } else {
+      setIsUserLoading(false);
+    }
   }, [pathname]);
 
-  // if (isUserLoading) return <Spinner />;
+  if (isUserLoading) return <Spinner />;
 
   return (
     <MainContext.Provider

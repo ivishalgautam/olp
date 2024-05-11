@@ -23,21 +23,19 @@ export default function FeaturedProducts() {
   if (isError) return error.message ?? "error";
   // console.log({ products: data });
   return (
-    <div className="pb-10">
-      <div className="container space-y-4 pt-16">
-        <H3 className={"border-b pb-4"}>
-          <span className="border-b-2 border-primary py-3">Featured </span>
-          products
-        </H3>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-          {!data?.length ? (
-            <P>Not found!</P>
-          ) : (
-            data
-              ?.slice(0, 12)
-              ?.map((product) => <ProductCard key={product.id} {...product} />)
-          )}
-        </div>
+    <div className="container space-y-4 py-4">
+      <H3 className={"border-b pb-4"}>
+        <span className="border-b-2 border-primary py-3">Featured </span>
+        products
+      </H3>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+        {!data?.length ? (
+          <P>Not found!</P>
+        ) : (
+          data
+            ?.slice(0, 12)
+            ?.map((product) => <ProductCard key={product.id} {...product} />)
+        )}
       </div>
     </div>
   );

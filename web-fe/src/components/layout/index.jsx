@@ -11,7 +11,6 @@ export default function Layout({ children }) {
   const router = useRouter();
   const { slug } = useParams();
   const { user, isUserLoading } = useContext(MainContext);
-
   useEffect(() => {
     if (
       pathname === "/login" ||
@@ -20,7 +19,7 @@ export default function Layout({ children }) {
     ) {
       return;
     }
-    if (isUserLoading) return;
+    // if (isUserLoading) return;
 
     // Find the current route in the AllRoutes array
     const currentRoute = allRoutes?.find(
@@ -39,7 +38,7 @@ export default function Layout({ children }) {
       localStorage.clear();
       router.replace("/login");
     }
-  }, [pathname, user, isUserLoading]);
+  }, [pathname, user, isUserLoading, slug]);
 
   return (
     <div>
