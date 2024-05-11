@@ -44,7 +44,9 @@ export default function Navbar() {
       <div className="container">
         <div className="flex items-center justify-between">
           <div className="p-4 md:hidden">
-            <Image width={100} height={100} src={"/logo.png"} alt="logo" />
+            <Link href={"/"}>
+              <Image width={100} height={100} src={"/logo.png"} alt="logo" />
+            </Link>
           </div>
           <div className="hidden md:block">
             <BrowseCategory />
