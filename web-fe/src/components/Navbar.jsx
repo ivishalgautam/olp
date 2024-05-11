@@ -73,19 +73,23 @@ export default function Navbar() {
 
           <div className="flex items-center justify-end gap-2 md:hidden">
             <div className="flex items-center justify-center">
-              <Link
-                href={"/cart"}
-                className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
-              >
-                <span>{data?.length}</span>
-                <MdOutlineShoppingCart size={25} fill="#fff" />
-              </Link>
-              <Link
-                href={"/customer/overview"}
-                className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
-              >
-                <RiUser3Line size={25} fill="#fff" />
-              </Link>
+              {user && (
+                <div>
+                  <Link
+                    href={"/cart"}
+                    className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
+                  >
+                    <span>{data?.length}</span>
+                    <MdOutlineShoppingCart size={25} fill="#fff" />
+                  </Link>
+                  <Link
+                    href={"/customer/overview"}
+                    className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
+                  >
+                    <RiUser3Line size={25} fill="#fff" />
+                  </Link>
+                </div>
+              )}
               <MobileNavSheet />
             </div>
           </div>

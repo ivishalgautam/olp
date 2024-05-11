@@ -6,7 +6,7 @@ export default function CategoryCard({ slug, image, name }) {
     <Link href={`/categories/${slug}`}>
       <div className="flex flex-col items-center justify-center rounded-md bg-white p-3 shadow-sm">
         <div>
-          <figure className="h-36 w-36">
+          <figure className="mx-auto h-36 w-36">
             <Image
               width={200}
               height={200}
