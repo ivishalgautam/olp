@@ -30,6 +30,7 @@ export default function CartForm({ data, handleCreate }) {
     control,
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = useForm();
   const { fields, append, remove } = useFieldArray({
@@ -39,10 +40,8 @@ export default function CartForm({ data, handleCreate }) {
 
   const deleteMutation = useMutation(deleteCartItem, {
     onSuccess: (data) => {
-      const index = fields.findIndex((so) => so._id === data.data.id);
-      remove(index);
       toast.success(data.message);
-      queryClient.invalidateQueries(["cart-items", "cart"]);
+      queryClient.invalidateQueries("cart");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -59,15 +58,16 @@ export default function CartForm({ data, handleCreate }) {
   };
 
   useEffect(() => {
-    remove();
-    data?.map((prd) =>
-      append({
+    // remove();
+    setValue(
+      "items",
+      data?.map((prd) => ({
         _id: prd.id,
         product_id: prd.product_id,
         title: prd.title,
         image: prd.pictures[0],
         quantity: "",
-      }),
+      })),
     );
   }, [data]);
 
