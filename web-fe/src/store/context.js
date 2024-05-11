@@ -25,7 +25,7 @@ function Context({ children }) {
         setIsUserLoading(false);
       }
     }
-    if (!["/", "/login", "/signup"].includes(pathname)) {
+    if (!["/login", "/signup"].includes(pathname)) {
       fetchData();
     } else {
       setIsUserLoading(false);

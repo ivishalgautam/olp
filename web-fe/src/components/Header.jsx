@@ -12,6 +12,7 @@ import Search from "./Search";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { useQuery } from "@tanstack/react-query";
+import { Button, buttonVariants } from "./ui/button";
 
 const fetchTempCart = async () => {
   return await http().get(endpoints.cart.temp);
@@ -29,7 +30,7 @@ export default function Header() {
   return (
     <header className="">
       <HeaderTop user={user} />
-      <HeaderMiddle data={data?.data} />
+      <HeaderMiddle data={data?.data} user={user} />
       <Navbar />
     </header>
   );
@@ -54,7 +55,7 @@ export const HeaderTop = ({ user }) => {
   );
 };
 
-export const HeaderMiddle = ({ data }) => {
+export const HeaderMiddle = ({ data, user }) => {
   return (
     <div className="container hidden min-h-16 md:block">
       <div className="flex items-center justify-between py-8">
@@ -79,21 +80,27 @@ export const HeaderMiddle = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4">
-          <Link href={"/cart"} className="relative">
-            {data?.length ? (
-              <span className="absolute -right-4 -top-4 flex size-6 items-center justify-center rounded-full bg-primary text-sm text-white">
-                {data?.length}
-              </span>
-            ) : (
-              <></>
-            )}
-            <MdOutlineShoppingCart size={30} />
+        {user ? (
+          <div className="flex items-center justify-center gap-4">
+            <Link href={"/cart"} className="relative">
+              {data?.length ? (
+                <span className="absolute -right-4 -top-4 flex size-6 items-center justify-center rounded-full bg-primary text-sm text-white">
+                  {data?.length}
+                </span>
+              ) : (
+                <></>
+              )}
+              <MdOutlineShoppingCart size={30} />
+            </Link>
+            <Link href={"/customer/overview"}>
+              <FiUser size={30} />
+            </Link>
+          </div>
+        ) : (
+          <Link href={"/login"} className={buttonVariants("primary")}>
+            Login
           </Link>
-          <Link href={"/customer/overview"}>
-            <FiUser size={30} />
-          </Link>
-        </div>
+        )}
       </div>
     </div>
   );
