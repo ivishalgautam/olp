@@ -85,8 +85,7 @@ export default function Page({ params: { id } }) {
 
   useEffect(() => {
     const fetchData = async (id) => {
-      const response = await http().get(`${endpoints.orders.getAll}/${id}`);
-      const data = response.data[0];
+      const data = await http().get(`${endpoints.orders.getAll}/${id}`);
       data && setValue("status", data.status);
       data &&
         data?.items?.map((ord) =>

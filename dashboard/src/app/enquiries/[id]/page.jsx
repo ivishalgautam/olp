@@ -102,8 +102,7 @@ export default function Page({ params: { id } }) {
 
   useEffect(() => {
     const fetchData = async (id) => {
-      const response = await http().get(`${endpoints.enquiries.getAll}/${id}`);
-      const data = response.data;
+      const data = await http().get(`${endpoints.enquiries.getAll}/${id}`);
       data && setValue("status", data.status);
       data && setValue("user_id", data.user_id);
       data &&
