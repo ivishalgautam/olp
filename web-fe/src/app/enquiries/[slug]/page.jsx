@@ -26,7 +26,7 @@ const updateEnquiry = (data) => {
 };
 
 const deleteOrderItem = ({ id }) => {
-  return http().delete(`${endpoints.enquiries.getAll}/order-items/${id}`);
+  return http().delete(`${endpoints.enquiries.getAll}/enquiry-items/${id}`);
 };
 
 const convertToOrder = ({ id }) => {
