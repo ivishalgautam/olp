@@ -31,13 +31,8 @@ export function logout() {
   redirect("/login");
 }
 
-export default function Navbar() {
+export default function Navbar({ data }) {
   const { user } = useContext(MainContext);
-  const { data, isFetching } = useQuery({
-    queryFn: fetchTempCart,
-    queryKey: ["cart"],
-    enabled: !!user,
-  });
 
   return (
     <div className="flex items-center justify-center bg-primary md:h-16">
@@ -79,9 +74,15 @@ export default function Navbar() {
                 <div>
                   <Link
                     href={"/cart"}
-                    className="inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
+                    className="relative inline-block rounded-sm p-2 transition-colors hover:bg-black/10"
                   >
-                    <span>{data?.length}</span>
+                    {data?.length ? (
+                      <span className="absolute -right-3 -top-3 flex size-6 items-center justify-center rounded-full bg-white text-sm text-primary">
+                        {data?.length}
+                      </span>
+                    ) : (
+                      <></>
+                    )}
                     <MdOutlineShoppingCart size={25} fill="#fff" />
                   </Link>
                   <Link

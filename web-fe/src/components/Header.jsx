@@ -15,7 +15,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, buttonVariants } from "./ui/button";
 
 const fetchTempCart = async () => {
-  return await http().get(endpoints.cart.temp);
+  const { data } = await http().get(endpoints.cart.temp);
+  return data;
 };
 
 export default function Header() {
@@ -30,8 +31,8 @@ export default function Header() {
   return (
     <header className="">
       <HeaderTop user={user} />
-      <HeaderMiddle data={data?.data} user={user} />
-      <Navbar />
+      <HeaderMiddle data={data} user={user} />
+      <Navbar data={data} />
     </header>
   );
 }

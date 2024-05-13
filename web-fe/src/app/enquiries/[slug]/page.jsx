@@ -82,9 +82,10 @@ export default function Page({ params: { slug } }) {
     const fetchData = async (id) => {
       try {
         setIsLoading(true);
-        const { data } = await http().get(
+        const response = await http().get(
           `${endpoints.enquiries.getAll}/${id}`,
         );
+        const data = response.data[0];
         remove();
         data && setValue("status", data.status);
         data &&
