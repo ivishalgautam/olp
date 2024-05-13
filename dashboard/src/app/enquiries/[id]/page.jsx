@@ -36,7 +36,7 @@ const convertToOrder = ({ id }) => {
 };
 
 const deleteOrderItem = ({ id }) => {
-  return http().delete(`${endpoints.enquiries.getAll}/order-items/${id}`);
+  return http().delete(`${endpoints.enquiries.getAll}/enquiry-items/${id}`);
 };
 
 export default function Page({ params: { id } }) {
