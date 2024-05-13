@@ -54,16 +54,6 @@ export default function Page({ params: { id } }) {
   });
   const queryClient = useQueryClient();
 
-  const fetchOrderById = async () => {
-    return await http().get(`${endpoints.orders.getAll}/${id}`);
-  };
-
-  const { data } = useQuery({
-    queryFn: fetchOrderById,
-    queryKey: [`order-${id}`],
-    enabled: !!id,
-  });
-
   const createMutation = useMutation(createOrder, {
     onSuccess: (data) => {
       toast.success(data.message);
@@ -95,7 +85,8 @@ export default function Page({ params: { id } }) {
 
   useEffect(() => {
     const fetchData = async (id) => {
-      const { data } = await http().get(`${endpoints.orders.getAll}/${id}`);
+      const response = await http().get(`${endpoints.orders.getAll}/${id}`);
+      const data = response.data[0];
       data && setValue("status", data.status);
       data &&
         data?.items?.map((ord) =>
