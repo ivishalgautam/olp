@@ -139,6 +139,7 @@ export default function Page({ params: { slug } }) {
   if (isLoading) {
     return <Spinner />;
   }
+  
   return (
     <section className="py-6">
       <div className="container rounded-md bg-white p-4">

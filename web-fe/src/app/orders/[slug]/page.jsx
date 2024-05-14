@@ -25,8 +25,7 @@ export default function Page({ params: { slug } }) {
   });
 
   async function fetchOrderItems() {
-    const { data } = await http().get(`${endpoints.orders.getAll}/${slug}`);
-    return data;
+    return await http().get(`${endpoints.orders.getAll}/${slug}`);
   }
 
   if (isLoading) {
