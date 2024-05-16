@@ -15,9 +15,15 @@ import { toast } from "sonner";
 import { isObject } from "@/utils/object";
 import { CustomerForm } from "../../components/Forms/Customer.js";
 import { useRouter } from "next/navigation.js";
+
 async function deleteCustomer(data) {
   return http().delete(`${endpoints.users.getAll}/${data.id}`);
 }
+
+const fetchCustomers = async () => {
+  const { data } = await http().get(endpoints.users.getAll);
+  return data;
+};
 
 export default function Customers() {
   const router = useRouter();
@@ -26,7 +32,11 @@ export default function Customers() {
   const [isModal, setIsModal] = useState(false);
   const [customerId, setCustomerId] = useState(null);
   const queryClient = useQueryClient();
-  const { data, isLoading, isError, error } = useFetchCustomers();
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["customers"],
+    queryFn: fetchCustomers,
+  });
+
   function openModal() {
     setIsModal(true);
   }
@@ -76,7 +86,7 @@ export default function Customers() {
   }
 
   if (isError) {
-    return JSON.stringify(error);
+    return error?.message ?? "error";
   }
 
   return (
