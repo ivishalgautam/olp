@@ -43,7 +43,7 @@ export default function BrowseCategory() {
               <span>Browse categories</span>
             </NavigationMenuTrigger>
 
-            <NavigationMenuContent>
+            <NavigationMenuContent className="max-h-96 overflow-y-scroll">
               <ul className="relative grid w-[350px] grid-cols-2 gap-3 p-6 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                 {data?.map((cat) => (
                   <li key={cat.id} className="">

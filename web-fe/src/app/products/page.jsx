@@ -31,6 +31,7 @@ const fetchProducts = async (page = 1, limit, categories, brands, part) => {
 
 export default function Page() {
   const searchParams = useSearchParams();
+
   const currPage = searchParams.get("page");
   const limit = searchParams.get("limit");
   const categories = searchParams.get("categories");
