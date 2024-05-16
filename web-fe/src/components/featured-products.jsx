@@ -21,7 +21,6 @@ export default function FeaturedProducts() {
 
   if (isLoading) return <Spinner />;
   if (isError) return error.message ?? "error";
-  // console.log({ products: data });
   return (
     <div className="container space-y-4 py-4">
       <H3 className={"border-b pb-4"}>

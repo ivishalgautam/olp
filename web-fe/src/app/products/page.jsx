@@ -25,12 +25,14 @@ const fetchProducts = async (page = 1, limit, categories, brands, part) => {
   }
 
   const url = `${endpoints.products.getAll}?${urlParams.toString()}`;
+  console.log({ url });
   return await http().get(url);
 };
 
 export default function Page({
   searchParams: { page: currPage, limit, categories, brands, part },
 }) {
+  console.log({ currPage, limit, categories, brands, part });
   const { data } = useQuery({
     queryKey: ["products", currPage, limit, categories, brands, part],
     queryFn: () => fetchProducts(currPage, limit, categories, brands, part),

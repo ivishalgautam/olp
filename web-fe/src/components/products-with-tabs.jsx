@@ -25,7 +25,6 @@ export default function ProductsWithTabs() {
 
   if (isLoading) return;
 
-  // console.log({ data });
   return (
     <div className="container space-y-4 py-4">
       <ul className="flex items-center justify-start gap-4 border-b">

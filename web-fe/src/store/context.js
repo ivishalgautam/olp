@@ -17,7 +17,6 @@ function Context({ children }) {
     async function fetchData() {
       try {
         const response = await http().get(endpoints.profile);
-        console.log({ response });
         setUser(response);
       } catch (error) {
         console.log(error);

@@ -64,8 +64,6 @@ export default function FeaturedCategories() {
           <Swiper
             spaceBetween={50}
             slidesPerView={1}
-            // onSlideChange={() => console.log("slide change")}
-            // onSwiper={(swiper) => console.log(swiper)}
             breakpoints={breakpoints}
             modules={[Navigation]}
             navigation
