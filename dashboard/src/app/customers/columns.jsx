@@ -69,12 +69,12 @@ export const columns = (
     },
   },
   {
-    accessorKey: "blocked",
+    accessorKey: "is_active",
     header: ({ column }) => {
       return <Button variant="ghost">Status</Button>;
     },
     cell: ({ row }) => {
-      const is_active = row.original.is_active;
+      const is_active = row.getValue("is_active");
       const id = row.original.id;
       return (
         <div className="flex items-center justify-start gap-2">

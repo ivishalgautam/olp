@@ -42,7 +42,7 @@ export default function Customers() {
   const deleteMutation = useMutation(deleteCustomer, {
     onSuccess: () => {
       toast.success("Customer deleted.");
-      queryClient.invalidateQueries({ queryKey: ["customers"] });
+      queryClient.invalidateQueries("customers");
       closeModal();
     },
     onError: (error) => {
@@ -65,7 +65,7 @@ export default function Customers() {
         { is_active: status }
       );
       toast.success(response.message);
-      queryClient.invalidateQueries({ queryKey: ["customers"] });
+      queryClient.invalidateQueries("customers");
     } catch (error) {
       console.log(error);
     }
