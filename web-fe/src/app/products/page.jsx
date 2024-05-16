@@ -4,6 +4,7 @@ import ProductsWithFilter from "@/components/products-with-filter";
 import { useQuery } from "@tanstack/react-query";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
+import { useSearchParams } from "next/navigation";
 
 const fetchProducts = async (page = 1, limit, categories, brands, part) => {
   const urlParams = new URLSearchParams();
@@ -25,14 +26,17 @@ const fetchProducts = async (page = 1, limit, categories, brands, part) => {
   }
 
   const url = `${endpoints.products.getAll}?${urlParams.toString()}`;
-  console.log({ url });
   return await http().get(url);
 };
 
-export default function Page({
-  searchParams: { page: currPage, limit, categories, brands, part },
-}) {
-  console.log({ currPage, limit, categories, brands, part });
+export default function Page() {
+  const searchParams = useSearchParams();
+  const currPage = searchParams.get("page");
+  const limit = searchParams.get("limit");
+  const categories = searchParams.get("categories");
+  const brands = searchParams.get("brands");
+  const part = searchParams.get("part");
+
   const { data } = useQuery({
     queryKey: ["products", currPage, limit, categories, brands, part],
     queryFn: () => fetchProducts(currPage, limit, categories, brands, part),
