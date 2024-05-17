@@ -1,13 +1,16 @@
 "use client";
 import { useContext } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AllRoutes } from "@/data/sidebarData";
 import { MainContext } from "@/store/context";
+import { Button } from "../ui/button";
+import { LogOut } from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { user } = useContext(MainContext);
+  const router = useRouter();
+  const { user, setUser } = useContext(MainContext);
 
   const userRole = user?.role;
 
@@ -56,6 +59,23 @@ export default function Sidebar() {
             </Link>
           </li>
         ))}
+
+        <li>
+          <Button
+            variant="primary"
+            className="w-full space-x-4"
+            onClick={() => {
+              localStorage.clear();
+              setUser("");
+              router.push("/login");
+            }}
+          >
+            <span>Logout</span>
+            <span>
+              <LogOut size={15} />
+            </span>
+          </Button>
+        </li>
       </ul>
     </div>
   );

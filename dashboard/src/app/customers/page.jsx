@@ -32,6 +32,7 @@ export default function Customers() {
   const [isModal, setIsModal] = useState(false);
   const [customerId, setCustomerId] = useState(null);
   const queryClient = useQueryClient();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["customers"],
     queryFn: fetchCustomers,
