@@ -28,6 +28,11 @@ export default function LoginForm() {
     setLoading(true);
     try {
       const response = await http().post(endpoints.auth.login, credentials);
+
+      if (response.user_data.role !== "admin") {
+        return toast.error("user not found!");
+      }
+
       localStorage.setItem("user", JSON.stringify(response.user_data));
       localStorage.setItem("token", response.token);
       localStorage.setItem("refreshToken", response.refresh_token);
