@@ -9,6 +9,7 @@ export default function Verify() {
   const router = useRouter();
   const { user } = useContext(MainContext);
   if (!user) return router.replace("/login");
+
   return (
     <AuthLayout>
       <OTPForm phone={user.mobile_number} />

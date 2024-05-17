@@ -64,7 +64,7 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-xl">
       <div className="flex items-center justify-start p-8">
         <div className="w-full space-y-6">
           <div className="space-y-4">
@@ -74,11 +74,8 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
             </div>
 
             {/* product info */}
-            <div
-              id="product-information"
-              className="space-y-4 rounded-lg border-input bg-white"
-            >
-              <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-4 rounded-lg border-input bg-white">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {/* first name */}
                 <div>
                   <Label htmlFor="first_name">Firstname</Label>
@@ -106,49 +103,48 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
                   />
                 </div>
 
-                {/* mobile number */}
-                <div className="col-span-2">
-                  <Label htmlFor="mobile_number">Mobile number</Label>
-
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <Controller
-                        control={control}
-                        rules={{ required: "required" }}
-                        name="country_code"
-                        render={({ field }) => (
-                          <ReactSelect
-                            onChange={field.onChange}
-                            value={field.value}
-                            options={countries.map(({ code: value, name }) => ({
-                              value,
-                              label: `${value} ${name}`,
-                            }))}
-                            placeholder="Country"
-                          />
-                        )}
+                {/* countru code */}
+                <div>
+                  <Label htmlFor="country_code">Country code</Label>
+                  <Controller
+                    control={control}
+                    rules={{ required: "required" }}
+                    name="country_code"
+                    render={({ field }) => (
+                      <ReactSelect
+                        onChange={field.onChange}
+                        value={field.value}
+                        options={countries.map(({ code: value, name }) => ({
+                          value,
+                          label: `${value} ${name}`,
+                        }))}
+                        placeholder="Country"
                       />
-                      {errors.country_code && (
-                        <span className="text-red-600">
-                          {errors.country_code.message}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex-3">
-                      <Input
-                        {...register("mobile_number", {
-                          required: "required",
-                        })}
-                        placeholder="Enter mobile number"
-                      />
-                      {errors.mobile_number && (
-                        <span className="text-red-600">
-                          {errors.mobile_number.message}
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                    )}
+                  />
+                  {errors.country_code && (
+                    <span className="text-red-600">
+                      {errors.country_code.message}
+                    </span>
+                  )}
                 </div>
+
+                {/* mobile number */}
+                <div>
+                  <Label htmlFor="mobile_number">Mobile number</Label>
+                  <Input
+                    {...register("mobile_number", {
+                      required: "required",
+                    })}
+                    placeholder="Enter mobile number"
+                  />
+                  {errors.mobile_number && (
+                    <span className="text-red-600">
+                      {errors.mobile_number.message}
+                    </span>
+                  )}
+                </div>
+
                 {/* email */}
                 <div>
                   <Label htmlFor="email">Email</Label>
@@ -186,70 +182,68 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
                 </div>
 
                 {/* passwords */}
-                <div className="col-span-2 grid grid-cols-2 gap-2">
-                  <div>
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative">
-                      <Input
-                        type={showPasswords.password ? "text" : "password"}
-                        placeholder="Password"
-                        {...register("password", {
-                          required: "required",
-                        })}
-                      />
-                      <div
-                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-                        onClick={() =>
-                          setShowPasswords((prev) => ({
-                            ...prev,
-                            password: !prev.password,
-                          }))
-                        }
-                      >
-                        <FaRegEye />
-                      </div>
-                    </div>
-                    {errors.password && (
-                      <span className="text-red-600">
-                        {errors.password.message}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* confirm password */}
+                <div>
+                  <Label htmlFor="password">Password</Label>
                   <div className="relative">
-                    <Label htmlFor="confirm_password">Confirm password</Label>
-                    <div className="relative">
-                      <Input
-                        type={showPasswords.cpassword ? "text" : "password"}
-                        placeholder="Confirm password"
-                        {...register("confirm_password", {
-                          required: "required",
-                          validate: (val) => {
-                            if (watch("password") != val) {
-                              return "Your passwords do no match";
-                            }
-                          },
-                        })}
-                      />
-                      <div
-                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-                        onClick={() =>
-                          setShowPasswords((prev) => ({
-                            ...prev,
-                            cpassword: !showPasswords.cpassword,
-                          }))
-                        }
-                      >
-                        <FaRegEye />
-                      </div>
+                    <Input
+                      type={showPasswords.password ? "text" : "password"}
+                      placeholder="Password"
+                      {...register("password", {
+                        required: "required",
+                      })}
+                    />
+                    <div
+                      className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                      onClick={() =>
+                        setShowPasswords((prev) => ({
+                          ...prev,
+                          password: !prev.password,
+                        }))
+                      }
+                    >
+                      <FaRegEye />
                     </div>
-                    {errors.confirm_password && (
-                      <span className="text-red-600">
-                        {errors.confirm_password.message}
-                      </span>
-                    )}
                   </div>
+                  {errors.password && (
+                    <span className="text-red-600">
+                      {errors.password.message}
+                    </span>
+                  )}
+                </div>
+
+                {/* confirm password */}
+                <div className="relative">
+                  <Label htmlFor="confirm_password">Confirm password</Label>
+                  <div className="relative">
+                    <Input
+                      type={showPasswords.cpassword ? "text" : "password"}
+                      placeholder="Confirm password"
+                      {...register("confirm_password", {
+                        required: "required",
+                        validate: (val) => {
+                          if (watch("password") != val) {
+                            return "Your passwords do no match";
+                          }
+                        },
+                      })}
+                    />
+                    <div
+                      className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                      onClick={() =>
+                        setShowPasswords((prev) => ({
+                          ...prev,
+                          cpassword: !showPasswords.cpassword,
+                        }))
+                      }
+                    >
+                      <FaRegEye />
+                    </div>
+                  </div>
+                  {errors.confirm_password && (
+                    <span className="text-red-600">
+                      {errors.confirm_password.message}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

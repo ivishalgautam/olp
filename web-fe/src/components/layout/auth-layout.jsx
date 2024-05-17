@@ -18,7 +18,7 @@ export default function AuthLayout({ children }) {
           </div>
 
           {/* right */}
-          <div className="flex flex-1 items-center justify-start pb-8">
+          <div className="flex flex-1 items-center justify-center pb-8 md:justify-start">
             {children}
           </div>
         </div>

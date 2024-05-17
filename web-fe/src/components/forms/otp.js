@@ -27,7 +27,7 @@ const verifyOtp = async (data) => {
 export default function OTPForm({ phone }) {
   const router = useRouter();
   const { setUser } = useContext(MainContext);
-  const { control, watch, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: { otp: "" },
   });
   const [isResendDisabled, setIsResendDisabled] = useState(false);
