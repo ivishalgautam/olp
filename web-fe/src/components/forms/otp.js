@@ -16,12 +16,12 @@ import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
 import { MainContext } from "@/store/context";
 
-const sendOtp = async () => {
-  return await http().post(endpoints.otp.send);
+const sendOtp = async (data) => {
+  return await http().post(endpoints.otp.send, data);
 };
 
 const verifyOtp = async (data) => {
-  return await http().post(`${endpoints.otp.verify}`, data);
+  return await http().post(endpoints.otp.verify, data);
 };
 
 export default function OTPForm({ phone }) {
@@ -83,7 +83,7 @@ export default function OTPForm({ phone }) {
   };
 
   const handleSendOtp = () => {
-    sendMutation.mutate();
+    sendMutation.mutate({ phone });
   };
 
   const handleVerifyOtp = (otp) => {
