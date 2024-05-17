@@ -13,7 +13,6 @@ import ReactSelect from "react-select";
 import Link from "next/link";
 
 import "react-phone-number-input/style.css";
-import { useRouter } from "next/navigation";
 import { countries } from "@/data/countryCodes";
 import { Label } from "../ui/label";
 
@@ -21,16 +20,13 @@ async function createCustomer(data) {
   return http().post(endpoints.users.getAll, data);
 }
 
-export function SignUpForm() {
-  const router = useRouter();
+export function SignUpForm({ setIsOtpSent, setPhone }) {
   const {
     register,
     control,
     handleSubmit,
-    setValue,
     watch,
     reset,
-    getValues,
     formState: { errors },
   } = useForm();
   const [showPasswords, setShowPasswords] = useState({
@@ -40,11 +36,8 @@ export function SignUpForm() {
 
   const createMutation = useMutation(createCustomer, {
     onSuccess: (data) => {
-      toast.success("Customer created.");
-      localStorage.setItem("user", JSON.stringify(data.user_data));
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("refreshToken", data.refresh_token);
-      router.push("/verify");
+      setIsOtpSent(true);
+      reset();
     },
     onError: (error) => {
       toast.error(error?.message ?? "Error registering customer!");
@@ -67,7 +60,7 @@ export function SignUpForm() {
     };
 
     handleCreate(payload);
-    reset();
+    setPhone(payload.mobile_number);
   };
 
   return (

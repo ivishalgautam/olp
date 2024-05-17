@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   InputOTP,
   InputOTPGroup,
@@ -14,17 +14,19 @@ import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
+import { MainContext } from "@/store/context";
 
 const sendOtp = async () => {
   return await http().post(endpoints.otp.send);
 };
 
-const verifyOtp = async ({ otp }) => {
-  return await http().post(`${endpoints.otp.verify}/${otp}`);
+const verifyOtp = async (data) => {
+  return await http().post(`${endpoints.otp.verify}`, data);
 };
 
-export default function OTPForm() {
+export default function OTPForm({ phone }) {
   const router = useRouter();
+  const { setUser } = useContext(MainContext);
   const { control, watch, handleSubmit } = useForm({
     defaultValues: { otp: "" },
   });
@@ -51,7 +53,14 @@ export default function OTPForm() {
   const verifyMutation = useMutation(verifyOtp, {
     onSuccess: (data) => {
       toast.success(data.message);
-      router.replace("/");
+      console.log({ data });
+      if (data.is_active) {
+        router.replace("/");
+      } else {
+        localStorage.clear();
+        setUser("");
+        router.replace("/login");
+      }
     },
     onError: (error) => {
       toast.error(error.message);
@@ -78,7 +87,7 @@ export default function OTPForm() {
   };
 
   const handleVerifyOtp = (otp) => {
-    verifyMutation.mutate({ otp });
+    verifyMutation.mutate({ otp, phone });
   };
 
   const onSubmit = ({ otp }) => {
