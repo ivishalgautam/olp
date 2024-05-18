@@ -40,9 +40,7 @@ export function ProductForm({
     reset,
     getValues,
     formState: { errors },
-  } = useForm({
-    defaultValues: { descriptions: [{ key: "", value: "" }] },
-  });
+  } = useForm({});
   const { fields, append, remove } = useFieldArray({
     control,
     name: "descriptions",
@@ -50,7 +48,6 @@ export function ProductForm({
 
   const [text, setText] = useState("");
   const debouncedSetText = debounce(setText, 1000);
-  // console.log(watch());
   const [tags, setTags] = useState([]);
   const [pictures, setPictures] = useState([]);
   const { data: categories } = useFetchCategories();
@@ -104,7 +101,7 @@ export function ProductForm({
       type: data?.product_type.value,
       sku: data?.sku,
       brand_id: data?.brand.value,
-      category_id: data?.category?.value,
+      category_ids: data?.category?.map((so) => so.value),
       status: data?.status?.value,
       is_featured: data?.is_featured,
       related_products: data?.related_products?.map((so) => so.value),
@@ -121,18 +118,20 @@ export function ProductForm({
     reset();
     router.replace("/products");
   };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await http().get(
           `${endpoints.products.getAll}/getById/${productId}`
         );
+        // console.log({ data });
         data && setValue("name", data?.title);
         data &&
           setValue(
             "category",
-            formattedCategories?.find((so) => so.value === data?.category_id)
+            formattedCategories?.filter((so) =>
+              data?.category_ids?.includes(so.value)
+            )
           );
         data &&
           setValue(
@@ -276,10 +275,7 @@ export function ProductForm({
             </div>
 
             {/* product info */}
-            <div
-              id="product-information"
-              className="bg-white p-8 rounded-lg border-input shadow-lg space-y-4"
-            >
+            <div className="bg-white p-8 rounded-lg border-input shadow-lg space-y-4">
               <Title text={"Product Information"} />
               <div className="grid grid-cols-3 gap-2">
                 {/* product name */}
@@ -309,6 +305,7 @@ export function ProductForm({
                     render={({ field }) => (
                       <Select
                         {...field}
+                        isMulti
                         options={formattedCategories}
                         placeholder="Select category"
                         isDisabled={type === "view"}
