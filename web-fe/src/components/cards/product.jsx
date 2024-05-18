@@ -26,8 +26,8 @@ export default function ProductCard({
   brand_name,
   brand_slug,
 }) {
-  const category_name = categories[0].name;
-  const category_slug = categories[0].slug;
+  const category_name = categories?.[0]?.name ?? "";
+  const category_slug = categories?.[0]?.slug ?? "";
   const { user } = useContext(MainContext);
   const queryClient = useQueryClient();
   const createMutation = useMutation(addToCart, {
@@ -79,15 +79,17 @@ export default function ProductCard({
         >
           {category_name}
         </Link>
-        <div className="text-sm">
-          Brand:{" "}
-          <Link
-            href={`/brands/${brand_slug}`}
-            className="capitalize text-sky-500"
-          >
-            {brand_name}
-          </Link>
-        </div>
+        {brand_name && (
+          <div className="text-sm">
+            Brand:{" "}
+            <Link
+              href={`/brands/${brand_slug}`}
+              className="capitalize text-sky-500"
+            >
+              {brand_name}
+            </Link>
+          </div>
+        )}
         <Link href={`/products/${slug}`}>
           <H6 className={"text-start text-sm"}>{title}</H6>
         </Link>

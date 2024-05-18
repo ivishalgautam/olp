@@ -54,7 +54,7 @@ export default async function Page({ params: { slug } }) {
                     Categories:{" "}
                   </span>
                   <div className="inline-flex items-center justify-start gap-1">
-                    {Array.isArray(data.categories) &&
+                    {Array.isArray(data?.categories) &&
                       data?.categories
                         ?.filter((ele, ind, self) => {
                           return ind === self.findIndex((t) => t.id === ele.id);
