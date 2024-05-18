@@ -4,6 +4,7 @@ import AddToCart from "@/components/forms/add-to-cart";
 import { Button } from "@/components/ui/button";
 import { H3, P } from "@/components/ui/typography";
 import { fetchProduct } from "@/utils/api";
+import Link from "next/link";
 
 export async function generateMetadata({ params: { slug } }) {
   const { data } = await fetchProduct(slug);
@@ -19,7 +20,6 @@ export async function generateMetadata({ params: { slug } }) {
 
 export default async function Page({ params: { slug } }) {
   const { data } = await fetchProduct(slug);
-
   return (
     <section className="py-14">
       <div className="container space-y-10">
@@ -53,7 +53,27 @@ export default async function Page({ params: { slug } }) {
                   <span className="text-sm font-bold capitalize">
                     Categories:{" "}
                   </span>
-                  <span className="text-sm">{data?.category_name}</span>
+                  <div className="inline-flex items-center justify-start gap-1">
+                    {Array.isArray(data.categories) &&
+                      data?.categories
+                        ?.filter((ele, ind, self) => {
+                          return ind === self.findIndex((t) => t.id === ele.id);
+                        })
+                        .map(({ id, slug, name }) => (
+                          <Link
+                            href={`/categories/${slug}`}
+                            className="text-sm capitalize transition-colors hover:text-primary"
+                            key={id}
+                          >
+                            {name}
+                            {data?.categories?.length > 1 &&
+                            data?.categories[data?.categories?.length - 1]
+                              .id !== id
+                              ? ","
+                              : ""}
+                          </Link>
+                        ))}
+                  </div>
                 </div>
                 <div>
                   <div>
