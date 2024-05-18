@@ -61,7 +61,7 @@ export default function ProductCard({
       >
         {type}
       </span>
-      <div className="flex flex-col gap-1">
+      <div className="flex w-full flex-col gap-1">
         <Link href={`/products/${slug}`}>
           <figure className="mx-auto h-36 w-36 overflow-hidden rounded-lg">
             <Image
