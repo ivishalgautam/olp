@@ -22,11 +22,12 @@ export default function ProductCard({
   title,
   pictures,
   type,
-  category_name,
-  category_slug,
+  categories,
   brand_name,
   brand_slug,
 }) {
+  const category_name = categories[0].name;
+  const category_slug = categories[0].slug;
   const { user } = useContext(MainContext);
   const queryClient = useQueryClient();
   const createMutation = useMutation(addToCart, {
