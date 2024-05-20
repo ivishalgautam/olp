@@ -103,7 +103,7 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
                   />
                 </div>
 
-                {/* countru code */}
+                {/* country code */}
                 <div>
                   <Label htmlFor="country_code">Country code</Label>
                   <Controller

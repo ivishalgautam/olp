@@ -58,7 +58,7 @@ export default function Search() {
       throttleTimeoutRef.current = setTimeout(() => {
         throttleTimeoutRef.current = null;
         handleSearch(value);
-      }, 1000);
+      }, 300);
     };
 
     throttledInputChange(inputVal);
