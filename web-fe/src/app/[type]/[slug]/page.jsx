@@ -27,7 +27,7 @@ export default async function Page({
           </div>
 
           <div className="relative col-span-12 md:col-span-8 lg:col-span-9">
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-4 pb-14 md:grid-cols-3 lg:grid-cols-5">
               {data?.length ? (
                 data?.map((product) => (
                   <ProductCard key={product.id} {...product} />
