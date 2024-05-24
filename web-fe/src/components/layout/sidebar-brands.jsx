@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 
 export const fetchBrands = async () => {
-  const { data } = await http().get(`${endpoints.brands.getAll}?featured=true`);
+  const { data } = await http().get(`${endpoints.brands.getAll}`);
   return data;
 };
 

@@ -33,7 +33,7 @@ export default function AddToCart({ id }) {
       className="rounded-full"
       onClick={() => handleAddTocart(id)}
     >
-      Add to Enquiry
+      Add to cart
     </Button>
   );
 }
