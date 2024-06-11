@@ -14,7 +14,7 @@ import MobileNavSheet from "./mobile-nav-sheet";
 
 export const navList = [
   { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
+  { title: "About", href: "" },
   { title: "Products", href: "/products?page=1" },
   { title: "Contact", href: "/contact" },
 ];

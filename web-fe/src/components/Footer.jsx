@@ -77,7 +77,13 @@ export default function Footer() {
                       className="transition-transform hover:translate-x-1"
                     >
                       <Link
-                        href={item === "home" ? "/" : `/${item}`}
+                        href={
+                          item === "home"
+                            ? "/"
+                            : item === "about"
+                              ? ""
+                              : `/${item}`
+                        }
                         className="text-sm capitalize"
                       >
                         {item}
