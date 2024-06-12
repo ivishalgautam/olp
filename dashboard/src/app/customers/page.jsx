@@ -38,8 +38,8 @@ export default function Customers() {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["users"],
     queryFn: fetchCustomers,
+    queryKey: ["users"],
   });
 
   function openModal() {
