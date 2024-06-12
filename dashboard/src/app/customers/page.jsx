@@ -2,7 +2,6 @@
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useFetchCustomers } from "../../hooks/useFetchCustomers";
 import Spinner from "@/components/Spinner";
 import { useState } from "react";
 import { DataTable } from "./data-table";
@@ -12,7 +11,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "@/utils/http";
 import { endpoints } from "../../utils/endpoints.js";
 import { toast } from "sonner";
-import { isObject } from "@/utils/object";
 import { CustomerForm } from "../../components/Forms/Customer.js";
 import { useRouter } from "next/navigation.js";
 
