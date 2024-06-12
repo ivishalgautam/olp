@@ -59,6 +59,7 @@ export default function Customers() {
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
     onSuccess: (resp) => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      console.log(queryClient.invalidateQueries({ queryKey: ["users"] }));
       toast.success(resp.message);
     },
     onError: (error) => {
