@@ -1,6 +1,6 @@
 "use client";
 import { useContext } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
@@ -13,6 +13,7 @@ const addToCart = (data) => {
 
 export default function AddToCart({ id }) {
   const { user } = useContext(MainContext);
+  const queryClient = useQueryClient();
   const createMutation = useMutation(addToCart, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("cart-items");
