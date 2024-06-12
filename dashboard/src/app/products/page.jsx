@@ -32,8 +32,7 @@ export default function Products() {
     </Suspense>
   );
 }
-
-export function Table() {
+function Table() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page")
