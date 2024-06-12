@@ -68,6 +68,12 @@ export const AllRoutes = [
     icon: PiUsersFour,
     roles: [ROLES.ADMIN],
   },
+  // {
+  //   label: "Customers",
+  //   link: "/customers/import",
+  //   icon: PiUsersFour,
+  //   roles: [ROLES.ADMIN],
+  // },
   {
     label: "Customers",
     link: "/customers/[id]/edit",

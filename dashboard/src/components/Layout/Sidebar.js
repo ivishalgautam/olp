@@ -18,6 +18,7 @@ export default function Sidebar() {
     (item) =>
       !item.link.includes("/edit") &&
       !item.link.includes("/create") &&
+      !item.link.includes("/import") &&
       !item.link.includes("[id]")
   );
 
