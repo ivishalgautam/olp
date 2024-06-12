@@ -99,17 +99,22 @@ export default function Page({ params: { id } }) {
   const handleConvertToOrder = ({ id }) => {
     convertToOrderMutation.mutate({ id });
   };
-
   useEffect(() => {
     const fetchData = async (id) => {
       const data = await http().get(`${endpoints.enquiries.getAll}/${id}`);
       data && setValue("status", data.status);
       data && setValue("user_id", data.user_id);
+      if (
+        data?.items.length === 1 &&
+        Object.values(data.items[0]).every((i) => i === null)
+      ) {
+        return;
+      }
       data &&
         data?.items?.map((ord) =>
           append({
             _id: ord.id,
-            image: ord.pictures[0],
+            image: ord?.pictures?.[0],
             title: ord.title,
             quantity: ord.quantity,
             status: ord.status,
@@ -121,7 +126,6 @@ export default function Page({ params: { id } }) {
 
     fetchData(id);
   }, [id]);
-
   const onSubmit = (data) => {
     const payload = {
       status: data.status,

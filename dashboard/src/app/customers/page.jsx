@@ -76,11 +76,10 @@ export default function Customers() {
         { is_active: status }
       );
       toast.success(response.message);
-      // queryClient.invalidateQueries(["customers"]);
     } catch (error) {
       console.log(error);
     } finally {
-      queryClient.invalidateQueries(["customers"]);
+      queryClient.invalidateQueries("customers");
     }
   }
 

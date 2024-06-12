@@ -25,9 +25,14 @@ export const columns = (handleDelete, handleNavigate) => [
     cell: ({ row }) => {
       const id = row.original.id;
       return (
-        <Small className={"bg-primary text-white rounded-full p-1 px-2"}>
-          <Link href={`/orders/${id}`}>{id}</Link>
-        </Small>
+        <span
+          className={
+            "bg-primary text-white rounded-full p-1 px-2 text-sm cursor-pointer"
+          }
+          onClick={() => handleNavigate(`/orders/${id}`)}
+        >
+          {id}
+        </span>
       );
     },
   },
@@ -99,7 +104,7 @@ export const columns = (handleDelete, handleNavigate) => [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => handleNavigate(`/orders/${id}`)}>
-              View
+              Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => handleDelete({ id })}>

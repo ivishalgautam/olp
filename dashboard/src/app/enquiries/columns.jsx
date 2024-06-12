@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "../../components/ui/button";
 import { ArrowUpDown } from "lucide-react";
-import Link from "next/link";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
@@ -25,9 +24,14 @@ export const columns = (handleDelete, handleNavigate) => [
     cell: ({ row }) => {
       const id = row.original.id;
       return (
-        <Small className={"bg-primary text-white rounded-full p-1 px-2"}>
-          <Link href={`/enquiries/${id}`}>{id}</Link>
-        </Small>
+        <span
+          className={
+            "bg-primary text-white rounded-full p-1 px-2 cursor-pointer text-sm"
+          }
+          onClick={() => handleNavigate(`/enquiries/${id}`)}
+        >
+          {id}
+        </span>
       );
     },
   },
@@ -101,7 +105,7 @@ export const columns = (handleDelete, handleNavigate) => [
             <DropdownMenuItem
               onClick={() => handleNavigate(`/enquiries/${id}`)}
             >
-              View
+              Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => handleDelete({ id })}>
