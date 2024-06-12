@@ -62,7 +62,7 @@ export default function Customers() {
       toast.error(error.message ?? "error");
     },
     onSettled: () => {
-      queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries({ queryKey: ["users"] });
       console.log(queryClient.invalidateQueries("users"));
     },
   });
@@ -76,7 +76,7 @@ export default function Customers() {
       toast.error(error.message ?? "error");
     },
     onSettled: () => {
-      queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries({ queryKey: ["users"] });
       console.log(queryClient.invalidateQueries("users"));
     },
   });
