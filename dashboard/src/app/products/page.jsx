@@ -3,7 +3,7 @@ import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Spinner from "@/components/Spinner";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import Modal from "@/components/Modal";
@@ -26,6 +26,14 @@ const fetchProducts = async (page, limit) => {
 };
 
 export default function Products() {
+  return (
+    <Suspense>
+      <Table />
+    </Suspense>
+  );
+}
+
+export function Table() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page")
@@ -37,7 +45,9 @@ export default function Products() {
   const [type, setType] = useState(null);
   const [isModal, setIsModal] = useState(false);
   const [productId, setProductId] = useState(null);
+
   const queryClient = useQueryClient();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["products", page, limit],
     queryFn: () => fetchProducts(page, limit),
