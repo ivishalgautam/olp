@@ -64,6 +64,7 @@ export const columns = (handleDelete, handleNavigate) => [
           <Button
             className={cn("capitalize", {
               "bg-emerald-500 hover:bg-emerald-500/80": status === "available",
+              "bg-black hover:bg-black/80": status === "closed",
               "bg-orange-500 hover:bg-orange-500/80": status === "pending",
               "bg-rose-500 hover:bg-rose-500/80": status === "not_available",
               "bg-blue-500 hover:bg-blue-500/80":
