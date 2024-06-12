@@ -3,7 +3,7 @@ import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Spinner from "@/components/Spinner";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import Modal from "@/components/Modal";
@@ -96,41 +96,39 @@ export default function Products() {
   }
 
   return (
-    <Suspense>
-      <div className="container mx-auto bg-white p-8 rounded-lg border-input">
-        <div className="flex items-center justify-between">
-          <Title text={"Products"} />
-          <Button asChild>
-            <Link href={"/products/create"}>Create</Link>
-          </Button>
-        </div>
-
-        <div>
-          <DataTable
-            columns={columns(
-              setType,
-              openModal,
-              setProductId,
-              publishProduct,
-              handleNavigate
-            )}
-            data={data?.data}
-            totalPage={data?.total_page}
-          />
-        </div>
-
-        {isModal && (
-          <Modal onClose={closeModal} isOpen={isModal}>
-            <ProductForm
-              type={type}
-              handleDelete={handleDelete}
-              closeModal={closeModal}
-              productId={productId}
-              // filteredProducts={filteredProducts}
-            />
-          </Modal>
-        )}
+    <div className="container mx-auto bg-white p-8 rounded-lg border-input">
+      <div className="flex items-center justify-between">
+        <Title text={"Products"} />
+        <Button asChild>
+          <Link href={"/products/create"}>Create</Link>
+        </Button>
       </div>
-    </Suspense>
+
+      <div>
+        <DataTable
+          columns={columns(
+            setType,
+            openModal,
+            setProductId,
+            publishProduct,
+            handleNavigate
+          )}
+          data={data?.data}
+          totalPage={data?.total_page}
+        />
+      </div>
+
+      {isModal && (
+        <Modal onClose={closeModal} isOpen={isModal}>
+          <ProductForm
+            type={type}
+            handleDelete={handleDelete}
+            closeModal={closeModal}
+            productId={productId}
+            // filteredProducts={filteredProducts}
+          />
+        </Modal>
+      )}
+    </div>
   );
 }
