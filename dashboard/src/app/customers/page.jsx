@@ -79,7 +79,11 @@ export default function Customers() {
     } catch (error) {
       console.log(error);
     } finally {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      try {
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+      } catch (invalidateError) {
+        console.log({ invalidateError });
+      }
     }
   }
 
