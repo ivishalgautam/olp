@@ -119,25 +119,34 @@ export default function Footer() {
                     size="icon"
                     className="rounded-sm bg-black transition-transform hover:-translate-y-1"
                   >
-                    <FaFacebookF size={20} />
+                    <a
+                      href="https://www.facebook.com/onlinepartsearthmoving"
+                      target="_blank"
+                    >
+                      <FaFacebookF size={20} />
+                    </a>
                   </Button>
                   <Button
                     size="icon"
                     className="rounded-sm bg-black transition-transform hover:-translate-y-1"
                   >
-                    <FaInstagram size={20} />
+                    <a
+                      href="https://www.instagram.com/onlineparts.shop/"
+                      target="_blank"
+                    >
+                      <FaInstagram size={20} />
+                    </a>
                   </Button>
                   <Button
                     size="icon"
                     className="rounded-sm bg-black transition-transform hover:-translate-y-1"
                   >
-                    <FaXTwitter size={20} />
-                  </Button>
-                  <Button
-                    size="icon"
-                    className="rounded-sm bg-black transition-transform hover:-translate-y-1"
-                  >
-                    <FaLinkedinIn size={20} />
+                    <a
+                      href="https://www.linkedin.com/company/online-parts/"
+                      target="_blank"
+                    >
+                      <FaLinkedinIn size={20} />
+                    </a>
                   </Button>
                 </div>
               </div>
