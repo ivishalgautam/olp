@@ -56,23 +56,28 @@ export default function Customers() {
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
     onSuccess: (resp) => {
-      queryClient.invalidateQueries("users");
-      console.log(queryClient.invalidateQueries("users"));
       toast.success(resp.message);
     },
     onError: (error) => {
       toast.error(error.message ?? "error");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries("users");
+      console.log(queryClient.invalidateQueries("users"));
     },
   });
 
   const deleteMutation = useMutation(deleteCustomer, {
     onSuccess: () => {
       toast.success("Customer deleted.");
-      queryClient.invalidateQueries("users");
       closeModal();
     },
     onError: (error) => {
       toast.error(error.message ?? "error");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries("users");
+      console.log(queryClient.invalidateQueries("users"));
     },
   });
 
