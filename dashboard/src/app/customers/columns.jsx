@@ -80,7 +80,9 @@ export const columns = (
         <div className="flex items-center justify-start gap-2">
           <Switch
             checked={is_active}
-            onCheckedChange={() => handleCustomerStatus(id, !is_active)}
+            onCheckedChange={() =>
+              handleCustomerStatus({ id, status: !is_active })
+            }
           />
           <Small className={is_active ? "text-green-500" : "text-red-500"}>
             {is_active ? "active" : "inactive"}

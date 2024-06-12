@@ -25,6 +25,12 @@ const fetchCustomers = async () => {
   return data;
 };
 
+async function updateCustomerStatus({ id, status }) {
+  return await http().put(`${endpoints.users.getAll}/status/${id}`, {
+    is_active: status,
+  });
+}
+
 export default function Customers() {
   const router = useRouter();
 
@@ -50,42 +56,30 @@ export default function Customers() {
     router.push(href);
   }
 
+  const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
+    onSuccess: (resp) => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+      toast.success(resp.message);
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "error");
+    },
+  });
+
   const deleteMutation = useMutation(deleteCustomer, {
     onSuccess: () => {
       toast.success("Customer deleted.");
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries("users");
       closeModal();
     },
     onError: (error) => {
-      if (isObject(error)) {
-        toast.error(error.message);
-      } else {
-        toast.error(error);
-      }
+      toast.error(error.message ?? "error");
     },
   });
 
   const handleDelete = async (data) => {
     deleteMutation.mutate(data);
   };
-
-  async function handleCustomerStatus(customerId, status) {
-    try {
-      const response = await http().put(
-        `${endpoints.users.getAll}/status/${customerId}`,
-        { is_active: status }
-      );
-      toast.success(response.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      try {
-        queryClient.invalidateQueries({ queryKey: ["users"] });
-      } catch (invalidateError) {
-        console.log({ invalidateError });
-      }
-    }
-  }
 
   if (isLoading) {
     return <Spinner />;
