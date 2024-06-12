@@ -34,7 +34,7 @@ export default function Customers() {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["customers"],
+    queryKey: ["users"],
     queryFn: fetchCustomers,
   });
 
@@ -53,7 +53,7 @@ export default function Customers() {
   const deleteMutation = useMutation(deleteCustomer, {
     onSuccess: () => {
       toast.success("Customer deleted.");
-      queryClient.invalidateQueries("customers");
+      queryClient.invalidateQueries("users");
       closeModal();
     },
     onError: (error) => {
@@ -79,7 +79,7 @@ export default function Customers() {
     } catch (error) {
       console.log(error);
     } finally {
-      queryClient.invalidateQueries("customers");
+      queryClient.invalidateQueries("users");
     }
   }
 
