@@ -13,7 +13,6 @@ import {
 
 import moment from "moment";
 import { cn } from "@/lib/utils";
-import { Small } from "@/components/ui/typography";
 
 export const columns = (handleDelete, handleNavigate) => [
   {
