@@ -12,6 +12,7 @@ export const metadata = {
     title: "Online Parts Portal",
     description:
       "Get all the JCB Spares Parts at one place and get them fast. Our list of JCB Genuine Parts, Earthmoving Spare Parts",
+    images: "/_next/image?url=%2Fog_img.jpeg",
   },
 };
 
