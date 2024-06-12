@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     defaultOptions: {
       queries: {
         retry: 2,
-        refetchOnWindowFocus: false,
+        refetchOnWindowFocus: true,
         queryCache: new QueryCache({
           onError: (error, query) => {
             // 🎉 only show error toasts if we already have data in the cache
