@@ -4,6 +4,7 @@ import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 import { Small } from "@/components/ui/typography";
+import { Badge } from "@/components/ui/badge";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import moment from "moment";
+import { cn } from "@/lib/utils";
 
 export const columns = (
   setType,
@@ -75,19 +77,27 @@ export const columns = (
     },
     cell: ({ row }) => {
       const is_active = row.getValue("is_active");
-      const id = row.original.id;
+      // const id = row.original.id;
       return (
-        <div className="flex items-center justify-start gap-2">
-          <Switch
-            checked={is_active}
-            onCheckedChange={() =>
-              handleCustomerStatus({ id, status: !is_active })
-            }
-          />
-          <Small className={is_active ? "text-green-500" : "text-red-500"}>
-            {is_active ? "active" : "inactive"}
-          </Small>
-        </div>
+        // <div className="flex items-center justify-start gap-2">
+        //   <Switch
+        //     checked={is_active}
+        //     onCheckedChange={() =>
+        //       handleCustomerStatus({ id, status: !is_active })
+        //     }
+        //   />
+        //   <Small className={is_active ? "text-green-500" : "text-red-500"}>
+        //     {is_active ? "active" : "inactive"}
+        //   </Small>
+        // </div>
+        <Badge
+          className={cn({
+            "bg-emerald-500 text-white hover:bg-emerald-600": is_active,
+            "bg-red-500 text-white hover:bg-red-600": !is_active,
+          })}
+        >
+          {is_active ? "active" : "inactive"}
+        </Badge>
       );
     },
   },

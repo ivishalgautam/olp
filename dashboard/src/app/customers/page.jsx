@@ -55,37 +55,37 @@ export default function Customers() {
   }
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
-    // onMutate: async (data) => {
-    //   queryClient.setQueryData(["users"], (old) =>
-    //     old.map((item) =>
-    //       item.id === data.id ? { ...item, is_active: data.status } : item
-    //     )
-    //   );
+    onMutate: async (data) => {
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
+          item.id === data.id ? { ...item, is_active: data.status } : item
+        )
+      );
 
-    //   return { optimisticUser: data };
-    // },
+      return { optimisticUser: data };
+    },
     onSuccess: (result, variables, context) => {
       toast.success(result.message);
-      queryClient.invalidateQueries({ queryKey: ["users"], exact: true });
+      // queryClient.invalidateQueries({ queryKey: ["users"], exact: true });
 
-      // queryClient.setQueryData(["users"], (old) =>
-      //   old.map((item) =>
-      //     item.id === context.optimisticUser.id
-      //       ? { ...item, is_active: context.optimisticUser.status }
-      //       : item
-      //   )
-      // );
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
+          item.id === context.optimisticUser.id
+            ? { ...item, is_active: context.optimisticUser.status }
+            : item
+        )
+      );
     },
-    // onError: async (error, variables, context) => {
-    //   toast.error(error.message ?? "error");
-    //   queryClient.setQueryData(["users"], (old) =>
-    //     old.map((item) =>
-    //       item.id === context.optimisticUser.id
-    //         ? { ...item, is_active: !context.optimisticUser.status }
-    //         : item
-    //     )
-    //   );
-    // },
+    onError: async (error, variables, context) => {
+      toast.error(error.message ?? "error");
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
+          item.id === context.optimisticUser.id
+            ? { ...item, is_active: !context.optimisticUser.status }
+            : item
+        )
+      );
+    },
   });
 
   const deleteMutation = useMutation(deleteCustomer, {

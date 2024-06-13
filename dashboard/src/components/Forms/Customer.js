@@ -11,6 +11,8 @@ import { FaRegEye } from "react-icons/fa";
 import { Checkbox } from "../ui/checkbox";
 import { countries } from "../../data/countryCodes";
 import ReactSelect from "react-select";
+import { Switch } from "../ui/switch";
+import { Small } from "../ui/typography";
 
 export function CustomerForm({
   type,
@@ -34,6 +36,11 @@ export function CustomerForm({
     cpassword: false,
   });
 
+  const formattedCountries = countries.map(({ code: value, name }) => ({
+    value,
+    label: `${value} ${name}`,
+  }));
+
   const onSubmit = (data) => {
     if (type === "delete") {
       return handleDelete({ id: customerId });
@@ -47,6 +54,7 @@ export function CustomerForm({
       email: data.email,
       username: data.username,
       password: data.password,
+      is_active: data.is_active,
     };
 
     if (type === "create") {
@@ -67,9 +75,15 @@ export function CustomerForm({
         );
         data && setValue("first_name", data?.first_name);
         data && setValue("last_name", data?.last_name);
+        data &&
+          setValue(
+            "country_code",
+            formattedCountries.find((so) => so.value === data?.country_code)
+          );
         data && setValue("mobile_number", data?.mobile_number);
         data && setValue("email", data?.email);
         data && setValue("username", data?.username);
+        data && setValue("is_active", data?.is_active);
       } catch (error) {
         console.error(error);
       }
@@ -105,6 +119,25 @@ export function CustomerForm({
               id="product-information"
               className="bg-white p-8 rounded-lg border-input shadow-lg space-y-4"
             >
+              <div>
+                <div className="flex items-center justify-start gap-2">
+                  <Controller
+                    control={control}
+                    name="is_active"
+                    render={({ field: { onChange, value } }) => (
+                      <Switch checked={value} onCheckedChange={onChange} />
+                    )}
+                  />
+
+                  <Small
+                    className={
+                      watch("is_active") ? "text-green-500" : "text-red-500"
+                    }
+                  >
+                    {watch("is_active") ? "active" : "inactive"}
+                  </Small>
+                </div>
+              </div>
               <div className="grid grid-cols-2 gap-2">
                 {/* first name */}
                 <div>
@@ -138,24 +171,22 @@ export function CustomerForm({
                 {/* mobile number */}
                 <div>
                   <Label htmlFor="mobile_number">Mobile number</Label>
-
                   <div className="flex gap-2">
                     <div className="flex-1">
                       <Controller
                         control={control}
                         rules={{ required: true }}
                         name="country_code"
-                        render={({ field }) => (
-                          <ReactSelect
-                            onChange={field.onChange}
-                            value={field.value}
-                            options={countries.map(({ code: value, name }) => ({
-                              value,
-                              label: `${value} ${name}`,
-                            }))}
-                            placeholder="Country"
-                          />
-                        )}
+                        render={({ field }) => {
+                          return (
+                            <ReactSelect
+                              onChange={field.onChange}
+                              value={field.value}
+                              options={formattedCountries}
+                              placeholder="Country"
+                            />
+                          );
+                        }}
                       />
                     </div>
                     <div className="flex-3">
