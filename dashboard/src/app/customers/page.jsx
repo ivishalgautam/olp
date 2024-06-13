@@ -56,38 +56,33 @@ export default function Customers() {
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
     onMutate: async (data) => {
-      queryClient.setQueryData(["users"], (old) => {
-        return old.map((item) => {
-          if (item.id === data.id) {
-            return { ...item, is_active: data.status };
-          }
-          return item;
-        });
-      });
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
+          item.id === data.id ? { ...item, is_active: data.status } : item
+        )
+      );
 
       return { optimisticUser: data };
     },
     onSuccess: (result, variables, context) => {
-      console.log({ result, variables, context });
-      queryClient.setQueryData(["users"], (old) => {
-        return old.map((item) =>
+      toast.success(result.message);
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
           item.id === context.optimisticUser.id
             ? { ...item, is_active: context.optimisticUser.status }
             : item
-        );
-      });
-      toast.success(result.message);
+        )
+      );
     },
     onError: async (error, variables, context) => {
       toast.error(error.message ?? "error");
-      queryClient.setQueryData(["users"], (old) => {
-        return old.map((item) => {
-          if (item.id === variables.id) {
-            return { ...item, is_active: !variables.status };
-          }
-          return item;
-        });
-      });
+      queryClient.setQueryData(["users"], (old) =>
+        old.map((item) =>
+          item.id === context.optimisticUser.id
+            ? { ...item, is_active: !context.optimisticUser.status }
+            : item
+        )
+      );
     },
   });
 
