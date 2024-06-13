@@ -56,7 +56,6 @@ export default function Customers() {
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
     onMutate: async (data) => {
-      console.log({ data });
       queryClient.setQueryData(["users"], (old) => {
         return old.map((item) => {
           if (item.id === data.id) {
@@ -65,12 +64,21 @@ export default function Customers() {
           return item;
         });
       });
+
+      return { optimisticUser: data };
     },
-    onSuccess: (resp) => {
-      toast.success(resp.message);
+    onSuccess: (result, variables, context) => {
+      console.log({ result, variables, context });
+      queryClient.setQueryData(["users"], (old) => {
+        return old.map((item) =>
+          item.id === context.optimisticUser.id
+            ? { ...item, is_active: context.optimisticUser.status }
+            : item
+        );
+      });
+      toast.success(result.message);
     },
     onError: async (error, variables, context) => {
-      console.log({ error });
       toast.error(error.message ?? "error");
       queryClient.setQueryData(["users"], (old) => {
         return old.map((item) => {
