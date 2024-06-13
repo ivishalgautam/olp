@@ -31,15 +31,15 @@ async function updateCustomerStatus({ id, status }) {
 
 export default function Customers() {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const [type, setType] = useState(null);
   const [isModal, setIsModal] = useState(false);
   const [customerId, setCustomerId] = useState(null);
-  const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryFn: fetchCustomers,
     queryKey: ["users"],
+    queryFn: fetchCustomers,
   });
 
   function openModal() {
@@ -55,6 +55,16 @@ export default function Customers() {
   }
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
+    onMutate: async (data) => {
+      queryClient.setQueryData(["users"], (old) => {
+        return old.map((item) => {
+          if (item.id === data.id) {
+            return { ...item, is_active: data.status };
+          }
+          return item;
+        });
+      });
+    },
     onSuccess: (resp) => {
       toast.success(resp.message);
     },
@@ -63,6 +73,18 @@ export default function Customers() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["users"], exact: true });
+    },
+    onError: async (error, variables, context) => {
+      console.log([error, variables, context]);
+      toast.error(error.message ?? "error");
+      queryClient.setQueryData(["users"], (old) => {
+        return old.map((item) => {
+          if (item.id === variables.id) {
+            return { ...item, is_active: !variables.status };
+          }
+          return item;
+        });
+      });
     },
   });
 
