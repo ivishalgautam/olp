@@ -75,7 +75,6 @@ export default function Customers() {
       queryClient.invalidateQueries({ queryKey: ["users"], exact: true });
     },
     onError: async (error, variables, context) => {
-      console.log([error, variables, context]);
       toast.error(error.message ?? "error");
       queryClient.setQueryData(["users"], (old) => {
         return old.map((item) => {
