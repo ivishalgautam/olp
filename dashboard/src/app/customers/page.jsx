@@ -56,6 +56,7 @@ export default function Customers() {
 
   const { mutate: handleCustomerStatus } = useMutation(updateCustomerStatus, {
     onMutate: async (data) => {
+      console.log({ data });
       queryClient.setQueryData(["users"], (old) => {
         return old.map((item) => {
           if (item.id === data.id) {
