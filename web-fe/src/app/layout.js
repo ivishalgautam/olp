@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <GoogleTagManager gtmId="G-PB2CFZ5R74" />
+        <GoogleTagManager gtmId="G-BG5YBVM5DW" />
       </head>
       <body
         className={`${GeistSans.className} overflow-x-hidden`}
