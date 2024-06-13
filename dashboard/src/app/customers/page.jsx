@@ -12,7 +12,7 @@ import http from "@/utils/http";
 import { endpoints } from "../../utils/endpoints.js";
 import { toast } from "sonner";
 import { CustomerForm } from "../../components/Forms/Customer.js";
-import { useRouter } from "next/navigation.js";
+import { useRouter } from "next/navigation";
 
 async function deleteCustomer(data) {
   return http().delete(`${endpoints.users.getAll}/${data.id}`);
@@ -70,9 +70,6 @@ export default function Customers() {
     },
     onError: (error) => {
       toast.error(error.message ?? "error");
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"], exact: true });
     },
     onError: async (error, variables, context) => {
       toast.error(error.message ?? "error");
