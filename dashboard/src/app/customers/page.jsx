@@ -69,6 +69,7 @@ export default function Customers() {
       toast.success(resp.message);
     },
     onError: async (error, variables, context) => {
+      console.log({ error });
       toast.error(error.message ?? "error");
       queryClient.setQueryData(["users"], (old) => {
         return old.map((item) => {
