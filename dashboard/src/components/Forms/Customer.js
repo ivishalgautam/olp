@@ -119,16 +119,8 @@ export function CustomerForm({
               id="product-information"
               className="bg-white p-8 rounded-lg border-input shadow-lg space-y-4"
             >
-              <div>
-                <div className="flex items-center justify-start gap-2">
-                  <Controller
-                    control={control}
-                    name="is_active"
-                    render={({ field: { onChange, value } }) => (
-                      <Switch checked={value} onCheckedChange={onChange} />
-                    )}
-                  />
-
+              <div className="flex items-center justify-end gap-2">
+                <div className="flex items-center justify-end gap-2">
                   <Small
                     className={
                       watch("is_active") ? "text-green-500" : "text-red-500"
@@ -136,6 +128,13 @@ export function CustomerForm({
                   >
                     {watch("is_active") ? "active" : "inactive"}
                   </Small>
+                  <Controller
+                    control={control}
+                    name="is_active"
+                    render={({ field: { onChange, value } }) => (
+                      <Switch checked={value} onCheckedChange={onChange} />
+                    )}
+                  />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2">
