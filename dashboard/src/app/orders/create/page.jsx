@@ -1,18 +1,50 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
-import http from "@/utils/http";
 import Title from "@/components/Title";
-import { useFetchProducts } from "@/hooks/useFetchProducts";
-import ProductCard from "@/components/cards/Product";
+import Spinner from "@/components/Spinner";
+import { Suspense } from "react";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import http from "@/utils/http";
 import { toast } from "sonner";
-import { endpoints } from "../../../utils/endpoints";
+import { useRouter, useSearchParams } from "next/navigation";
+import { endpoints } from "@/utils/endpoints";
+
+const fetchProducts = async (page, limit) => {
+  return await http().get(
+    `${endpoints.products.getAll}?page=${page}&limit=${limit}`
+  );
+};
 
 const addToCart = (data) => {
   return http().post(`${endpoints.cart.temp}`, data);
 };
 
-export default function Create() {
-  const { data: products } = useFetchProducts();
+export default function Products() {
+  return (
+    <Suspense>
+      <Table />
+    </Suspense>
+  );
+}
+function Table() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page")
+    ? parseInt(searchParams.get("page"))
+    : 1;
+  const limit = searchParams.get("limit")
+    ? parseInt(searchParams.get("limit"))
+    : 10;
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["products", page, limit],
+    queryFn: () => fetchProducts(page, limit),
+  });
+
+  function handleNavigate(href) {
+    router.push(href);
+  }
 
   const createMutation = useMutation(addToCart, {
     onSuccess: (data) => {
@@ -28,22 +60,26 @@ export default function Create() {
     createMutation.mutate(data);
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return JSON.stringify(error);
+  }
+
   return (
-    <div className="container mx-auto bg-white p-8 rounded-lg border-input space-y-4">
-      <div className="p-2">
+    <div className="container mx-auto bg-white p-8 rounded-lg border-input">
+      <div className="flex items-center justify-between">
         <Title text={"Products"} />
       </div>
 
       <div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-          {products?.map((prd) => (
-            <ProductCard
-              key={prd.id}
-              {...prd}
-              handleAddToCart={handleAddToCart}
-            />
-          ))}
-        </div>
+        <DataTable
+          columns={columns(handleAddToCart, handleNavigate)}
+          data={data?.data}
+          totalPage={data?.total_page}
+        />
       </div>
     </div>
   );
