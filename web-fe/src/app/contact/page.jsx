@@ -8,7 +8,7 @@ export const metadata = {
   keywords:
     "Online Parts Shop Earthmovers Near Paramdham Mandir, Badkhal Extension, Faridabad Gurgaon Road, Faridabad-121001, Haryana, INDIA, Jcb Slew Cylinder SEAL KIT 991/00103, BUSH SMALL END 320/03017 LINER BEARING BUSH OPERATOR SEAT 332/Y8344, INJECTOR SLEEVE STEEL 320/02579, PUMP ASSY. 20/925327,OIL SEAL FRONT 320/03119, HOSE TOP RAD 834/11380,HOSE TOP RAD 834/11380, BUSH SMALL END 320/03017, COOLER EGR T4 56KW 320/06165, LIFT PUMP DIESEL FUEL 320/A7161, BLEED SCREW 816/60040, RE SILIENT MOUNT 123/03138, RE SILIENT MOUNT 123/03138,CAM SHAFT ASSY 320/03681,RADIATOR HOSE 834/00322, SEAL ROCKER COVER 320/07580, BUCKET TOOTH 531/03205, HOSE TRANS TO RADIATOR 332/C6437, BUCKET TOOTH 531/03205, CAM SHAFT ASSY 320/03681",
   authors: [{ name: "Online Parts Shop" }],
-  publishers: "Online Parts Shop",
+  publisher: "Online Parts Shop",
   openGraph: {
     title: "Contact US - JCB Spare Parts Manufacturer from Faridabad",
     description:

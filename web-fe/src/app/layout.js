@@ -14,7 +14,7 @@ export const metadata = {
   keywords:
     "jcb spare parts in india, jcb spare parts, Earthmoving spare parts in india jcb spare parts of india, Earthmoving spare parts  jcb spare parts in faridabad, jcb parts, jcb genuine parts, jcb spare parts online, spare parts of jcb, jcb engine spare parts, jcb spare parts manufacturer, jcb spare parts suppliers, jcb spare parts manufacturer in india,jcb spare parts manufacturer in faridabad, jcb spare parts price, Earthmoving spare parts wholesale suppliers, jcb spares suppliers, jcb spares wholesale suppliers, Earthmoving spare manufacturers in india",
   authors: [{ name: "Online Parts Shop" }],
-  publishers: "Online Parts Shop",
+  publisher: "Online Parts Shop",
   openGraph: {
     title:
       "Online Parts Shop - JCB Spare Parts in India | Earthmoving Spare Parts",
