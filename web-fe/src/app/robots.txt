@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://onlineparts.shop/sitemap.xml
+
