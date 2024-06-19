@@ -4,7 +4,7 @@ import QueryProvider from "@/components/QueryClientProvider";
 import { Toaster } from "sonner";
 import Context from "@/store/context";
 import Layout from "@/components/layout";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
   title:
@@ -33,9 +33,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <GoogleTagManager gtmId="G-BG5YBVM5DW" />
-      </head>
       <body
         className={`${GeistSans.className} overflow-x-hidden`}
         suppressHydrationWarning={true}
@@ -47,6 +44,7 @@ export default function RootLayout({ children }) {
           </Context>
         </QueryProvider>
       </body>
+      <GoogleAnalytics gaId="G-88GM0PE8E2" />
     </html>
   );
 }
