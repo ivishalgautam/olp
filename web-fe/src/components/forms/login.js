@@ -94,7 +94,7 @@ export default function LoginForm({ setIsResetPassword }) {
               type="button"
               onClick={() => setIsResetPassword(true)}
             >
-              Forgat password?
+              Forget password?
             </Button>
           </div>
 
