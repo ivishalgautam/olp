@@ -28,8 +28,8 @@ export default function ResetPasswordForm() {
     setLoading(true);
     try {
       const response = await http().post(endpoints.auth.resetPassword, data);
-      router.push("/");
       toast.success(response.message);
+      router.push("/");
     } catch (error) {
       console.log(error);
       return toast.error(error.message ?? "Unable to complete your request.");
