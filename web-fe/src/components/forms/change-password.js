@@ -10,6 +10,7 @@ import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { FaRegEye } from "react-icons/fa";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const changePassword = async (data) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -26,6 +27,7 @@ const changePassword = async (data) => {
 };
 
 export default function ChangePasswordForm({ token }) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showPasswords, setShowPasswords] = useState({
     new_password: false,
@@ -40,8 +42,8 @@ export default function ChangePasswordForm({ token }) {
 
   const resetMutation = useMutation(changePassword, {
     onSuccess: (data) => {
-      console.log({ data });
       toast.success(data.message ?? "Password changed");
+      router.push("/login");
     },
     onError: (error) => {
       console.log({ error });
