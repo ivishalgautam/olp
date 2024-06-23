@@ -26,6 +26,7 @@ const changePassword = async (data) => {
 };
 
 export default function ChangePasswordForm({ token }) {
+  const [loading, setLoading] = useState(false);
   const [showPasswords, setShowPasswords] = useState({
     new_password: false,
     cpassword: false,
@@ -48,6 +49,9 @@ export default function ChangePasswordForm({ token }) {
         error.response.data.message ?? "Reset password link expired!",
       );
     },
+    onSettled: () => {
+      setLoading(false);
+    },
   });
 
   const onSubmit = (data) => {
@@ -62,6 +66,7 @@ export default function ChangePasswordForm({ token }) {
   };
 
   function handleUpdate(data) {
+    setLoading(true);
     resetMutation.mutate(data);
   }
 
@@ -136,7 +141,12 @@ export default function ChangePasswordForm({ token }) {
         </div>
 
         {/* button */}
-        <Button>Change password</Button>
+        <Button>
+          {loading && (
+            <span className="mr-3 h-5 w-5 animate-spin rounded-full border-4 border-white/30 border-t-white"></span>
+          )}
+          Change password
+        </Button>
       </div>
     </form>
   );

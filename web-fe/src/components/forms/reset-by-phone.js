@@ -28,9 +28,7 @@ export default function ResetPasswordForm() {
     setLoading(true);
     try {
       const response = await http().post(endpoints.auth.resetPassword, data);
-      //   router.push("/");
-      console.log({ response });
-
+      router.push("/");
       toast.success(response.message);
     } catch (error) {
       console.log(error);
