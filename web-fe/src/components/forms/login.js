@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { isObject } from "@/utils/object";
 import { toast } from "sonner";
 
-export default function LoginForm() {
+export default function LoginForm({ setIsResetPassword }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -82,12 +82,19 @@ export default function LoginForm() {
             />
           </div>
 
-          <div>
+          <div className="flex items-center justify-between">
             <Button className="rounded-full px-12 py-6">
               {loading && (
                 <span className="mr-3 h-5 w-5 animate-spin rounded-full border-4 border-white/30 border-t-white"></span>
               )}
               LOGIN
+            </Button>
+            <Button
+              variant="ghost"
+              type="button"
+              onClick={() => setIsResetPassword(true)}
+            >
+              Forgat password?
             </Button>
           </div>
 
