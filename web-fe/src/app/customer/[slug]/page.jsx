@@ -45,7 +45,7 @@ export default function Page({ params: { slug } }) {
                 </div>
               )}
               {slug === "profile" && <ProfileForm />}
-              {slug === "change-password" && <ChangePasswordForm />}
+              {/* {slug === "change-password" && <ChangePasswordForm />} */}
             </div>
           </div>
         </div>
@@ -71,11 +71,11 @@ export function Sidebar({ image_url, first_name, last_name, email, slug }) {
       href: "profile",
       icon: <LiaUserEditSolid size={18} />,
     },
-    {
-      title: "Change password",
-      href: "change-password",
-      icon: <IoKeyOutline size={18} />,
-    },
+    // {
+    //   title: "Change password",
+    //   href: "change-password",
+    //   icon: <IoKeyOutline size={18} />,
+    // },
   ];
   const fullname = `${first_name} ${last_name}`;
   return (
