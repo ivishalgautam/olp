@@ -19,3 +19,12 @@ export async function fetchProduct(slug) {
 
   return data;
 }
+
+// fetch single category by slug
+export async function fetchCategory(slug) {
+  const { data } = await axios.get(
+    `${baseUrl}${endpoints.categories.getAll}/${slug}`,
+  );
+
+  return data;
+}

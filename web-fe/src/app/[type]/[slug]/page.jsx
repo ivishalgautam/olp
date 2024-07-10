@@ -3,7 +3,27 @@ import ProductCard from "@/components/cards/product";
 import SidebarBrands from "@/components/layout/sidebar-brands";
 import SidebarCategories from "@/components/layout/sidebar-categories";
 import { P } from "@/components/ui/typography";
-import { fetchProducts } from "@/utils/api";
+import { fetchCategory, fetchProducts } from "@/utils/api";
+
+async function fetchCategoryMetadata(slug) {
+  return fetchCategory(slug);
+}
+
+export async function generateMetadata({ params: { type, slug } }) {
+  if (type !== "categories") return;
+
+  const { data: category } = await fetchCategoryMetadata(slug);
+
+  return {
+    title: category.meta_title ?? category.name,
+    description: category.meta_description,
+    keywords: category.meta_keywords,
+    openGraph: {
+      title: category.meta_title ?? category.name,
+      description: category.meta_description,
+    },
+  };
+}
 
 export default async function Page({
   params: { type, slug },

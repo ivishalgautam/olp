@@ -38,7 +38,7 @@ export default function SidebarBrands() {
           <li
             key={id}
             className={cn(
-              `flex items-center justify-between py-2 text-sm font-medium capitalize`,
+              `flex items-center justify-between py-2 pr-4 text-sm font-medium capitalize`,
               {
                 "text-primary": slug === params.slug,
               },
