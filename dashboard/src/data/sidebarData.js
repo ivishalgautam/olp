@@ -51,6 +51,18 @@ export const AllRoutes = [
     roles: [ROLES.ADMIN],
   },
   {
+    label: "Categories",
+    link: "/categories/[id]/edit",
+    icon: BiCategoryAlt,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    label: "Categories",
+    link: "/categories/[id]/view",
+    icon: BiCategoryAlt,
+    roles: [ROLES.ADMIN],
+  },
+  {
     label: "Brands",
     link: "/brands",
     icon: GoTag,

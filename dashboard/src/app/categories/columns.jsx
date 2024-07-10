@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export const columns = (setType, openModal, setCategoryId) => [
+export const columns = (setType, openModal, setCategoryId, handleNavigate) => [
   {
     accessorKey: "pictures",
     header: ({ column }) => {
@@ -78,21 +78,13 @@ export const columns = (setType, openModal, setCategoryId) => [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => {
-                setCategoryId(id);
-                setType("view");
-                openModal();
-              }}
+              onClick={() => handleNavigate(`/categories/${id}/view`)}
             >
               View
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => {
-                setCategoryId(id);
-                setType("edit");
-                openModal();
-              }}
+              onClick={() => handleNavigate(`/categories/${id}/edit`)}
             >
               Edit
             </DropdownMenuItem>

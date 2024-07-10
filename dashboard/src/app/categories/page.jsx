@@ -12,6 +12,7 @@ import { endpoints } from "@/utils/endpoints";
 import Spinner from "@/components/Spinner";
 import { isObject } from "@/utils/object";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 async function postCategory(data) {
   return http().post(endpoints.categories.getAll, data);
@@ -34,6 +35,11 @@ export default function Categories() {
   const [type, setType] = useState("");
   const [categoryId, setCategoryId] = useState(null);
   const queryClient = useQueryClient();
+  const router = useRouter();
+
+  function handleNavigate(href) {
+    router.push(href);
+  }
 
   function openModal() {
     setIsModal(true);
@@ -109,7 +115,7 @@ export default function Categories() {
   }
 
   if (isError) {
-    return JSON.stringify(error);
+    return error.message ?? "error";
   }
 
   return (
@@ -128,7 +134,7 @@ export default function Categories() {
       </div>
       <div>
         <DataTable
-          columns={columns(setType, openModal, setCategoryId)}
+          columns={columns(setType, openModal, setCategoryId, handleNavigate)}
           data={data?.data?.map(({ id, name, image }) => ({ id, name, image }))}
         />
       </div>
