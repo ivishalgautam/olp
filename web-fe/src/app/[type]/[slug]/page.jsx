@@ -15,11 +15,11 @@ export async function generateMetadata({ params: { type, slug } }) {
   const { data: category } = await fetchCategoryMetadata(slug);
 
   return {
-    title: category.meta_title ?? category.name,
+    title: category.meta_title ? category.meta_title : category.name,
     description: category.meta_description,
     keywords: category.meta_keywords,
     openGraph: {
-      title: category.meta_title ?? category.name,
+      title: category.meta_title ? category.meta_title : category.name,
       description: category.meta_description,
     },
   };
