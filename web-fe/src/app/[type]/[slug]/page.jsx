@@ -22,6 +22,9 @@ export async function generateMetadata({ params: { type, slug } }) {
       title: category.meta_title ? category.meta_title : category.name,
       description: category.meta_description,
     },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/categories/${slug}`,
+    },
   };
 }
 
