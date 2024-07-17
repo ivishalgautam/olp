@@ -5,7 +5,7 @@ import { searchProducts } from "@/hooks/useSearchProducts";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { MainContext } from "@/store/context";
@@ -19,13 +19,17 @@ const addToCart = (data) => {
 };
 
 export default function Search() {
+  const params = useSearchParams();
+  const query = params.get("q") ?? "";
   const [searchResults, setSearchResults] = useState([]);
-  const [inputVal, setInputVal] = useState("");
+  const [inputVal, setInputVal] = useState();
+  const [isResultsVisible, setIsResultsVisible] = useState(false);
   const throttleTimeoutRef = useRef(null);
+  const containerRef = useRef(null);
   const pathname = usePathname();
-
   const { user } = useContext(MainContext);
   const queryClient = useQueryClient();
+
   const createMutation = useMutation(addToCart, {
     onSuccess: (data) => {
       toast.success(data.message);
@@ -80,6 +84,30 @@ export default function Search() {
     };
   }, [pathname]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setIsResultsVisible(false);
+      } else {
+        setIsResultsVisible(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [containerRef]);
+
+  useEffect(() => {
+    if (query) {
+      setInputVal(query);
+    }
+  }, [query]);
+
   return (
     <div className="relative h-full w-full">
       <div className="relative">
@@ -91,7 +119,8 @@ export default function Search() {
           onChange={(e) => setInputVal(e.target.value)}
           value={inputVal}
         />
-        <button
+        <Link
+          href={`/products/search?q=${inputVal}`}
           className={cn(
             "absolute right-0.5 top-1/2 z-0 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white",
             {
@@ -100,17 +129,12 @@ export default function Search() {
           )}
         >
           <FiSearch size={25} />
-        </button>
+        </Link>
       </div>
       {inputVal && searchResults.length > 0 && (
-        <div
-          className="absolute inset-0 z-50"
-          onClick={() => {
-            setSearchResults([]);
-          }}
-        >
-          {searchResults.length > 0 ? (
-            <ul className="absolute -top-full left-1/2 h-80 w-full -translate-x-1/2 translate-y-32 divide-y divide-gray-200 overflow-y-scroll rounded-md bg-white">
+        <div className="relative z-50" ref={containerRef}>
+          {inputVal && isResultsVisible && searchResults.length > 0 ? (
+            <ul className="absolute left-1/2 max-h-80 w-full -translate-x-1/2 divide-y divide-gray-200 overflow-y-scroll rounded-md bg-white">
               {searchResults.map((result) => (
                 <li
                   key={result.id}

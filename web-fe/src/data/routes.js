@@ -21,6 +21,10 @@ export const allRoutes = [
     roles: [ROLES.USER],
   },
   {
+    link: "/products/search",
+    roles: [ROLES.USER],
+  },
+  {
     link: "/cart",
     roles: [ROLES.USER],
   },
