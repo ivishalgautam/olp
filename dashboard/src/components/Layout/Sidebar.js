@@ -11,7 +11,6 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, setUser } = useContext(MainContext);
-
   const userRole = user?.role;
 
   let filteredMenu = AllRoutes?.filter(

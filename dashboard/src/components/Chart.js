@@ -31,8 +31,6 @@ export default function Chart() {
     queryKey: ["dashboard-stats"],
   });
 
-  console.log({ data });
-
   return (
     <Card>
       <div className="p-8">

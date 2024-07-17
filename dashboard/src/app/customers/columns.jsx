@@ -26,6 +26,24 @@ export const columns = (
   handleNavigate
 ) => [
   {
+    accessorKey: "username",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Username
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const username = row.original.username;
+      return <span className="text-sm font-semibold">@{username}</span>;
+    },
+  },
+  {
     accessorKey: "first_name",
     header: ({ column }) => {
       return (
@@ -40,12 +58,13 @@ export const columns = (
     },
     cell: ({ row }) => {
       const id = row.original.id;
+      const username = row.original.username;
       return (
         <Link
           className="capitalize hover:text-primary"
           href={`/customers/${id}/edit`}
         >
-          {row.getValue("first_name")}
+          <div>{row.getValue("first_name")}</div>
         </Link>
       );
     },
@@ -77,19 +96,7 @@ export const columns = (
     },
     cell: ({ row }) => {
       const is_active = row.getValue("is_active");
-      // const id = row.original.id;
       return (
-        // <div className="flex items-center justify-start gap-2">
-        //   <Switch
-        //     checked={is_active}
-        //     onCheckedChange={() =>
-        //       handleCustomerStatus({ id, status: !is_active })
-        //     }
-        //   />
-        //   <Small className={is_active ? "text-green-500" : "text-red-500"}>
-        //     {is_active ? "active" : "inactive"}
-        //   </Small>
-        // </div>
         <Badge
           className={cn({
             "bg-emerald-500 text-white hover:bg-emerald-600": is_active,

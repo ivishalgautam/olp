@@ -44,20 +44,16 @@ export default function RootLayout({ children }) {
       return;
     }
 
-    // Find the current route in the AllRoutes array
-
     const currentRoute = AllRoutes?.find(
       (route) => route.link === pathname.replace(id, "[id]")
     );
-    //  || route.link.includes(router.pathname)
-    // If the current route is not found in the array or the user's role is not allowed for this route
+
     if (!currentRoute || !currentRoute?.roles?.includes(currentUser?.role)) {
       router.replace("/unauthorized");
     }
   }, [pathname]);
 
   const getContent = () => {
-    // Array of all the paths that don't need the layout
     if (["/login", "/signup", "/unauthorized"].includes(pathname)) {
       return children;
     }

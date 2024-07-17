@@ -2,30 +2,31 @@ import { useEffect, createContext, useState } from "react";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { toast } from "react-hot-toast";
-import { isObject } from "@/utils/object";
+import Spinner from "@/components/Spinner";
 
 export const MainContext = createContext(null);
 
 function Context({ children }) {
   const [user, setUser] = useState();
+  const [isUserLoading, setIsUserLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      await http()
-        .get(endpoints.profile)
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          if (isObject(error)) {
-            toast.error(error.message);
-          } else {
-            toast.error("Unauthorized Access");
-          }
-        });
+      setIsUserLoading(true);
+      try {
+        const data = await http().get(endpoints.profile);
+        console.log({ data });
+        setUser(data);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setIsUserLoading(false);
+      }
     }
     fetchData();
   }, []);
+
+  if (isUserLoading) return <Spinner />;
 
   return (
     <MainContext.Provider
