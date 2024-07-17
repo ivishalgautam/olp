@@ -2,9 +2,12 @@
 import ProductCard from "@/components/cards/product";
 import { H4 } from "@/components/ui/typography";
 import { searchProducts } from "@/hooks/useSearchProducts";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function Page({ searchParams: { q } }) {
+export default function Page() {
+  const params = useSearchParams();
+  const q = params.get("q");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
