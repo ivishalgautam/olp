@@ -172,7 +172,13 @@ export function SignUpForm({ setIsOtpSent, setPhone }) {
                     placeholder="Username"
                     {...register("username", {
                       required: "required",
+                      pattern: {
+                        value: /^[a-z0-9]{3,16}$/,
+                        message:
+                          "Username should only contain lowercase letters. e.g. john",
+                      },
                     })}
+                    // pattern="/^[a-z0-9]{3,16}$/"
                   />
                   {errors.username && (
                     <span className="text-red-600">
