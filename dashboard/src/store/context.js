@@ -15,7 +15,6 @@ function Context({ children }) {
       setIsUserLoading(true);
       try {
         const data = await http().get(endpoints.profile);
-        console.log({ data });
         setUser(data);
       } catch (error) {
         toast.error(error.message);

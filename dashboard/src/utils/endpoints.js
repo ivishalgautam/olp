@@ -42,6 +42,9 @@ export const endpoints = {
   queries: {
     getAll: "/queries",
   },
+  blogs: {
+    getAll: "/blogs",
+  },
   cart: {
     getAll: "/carts",
     temp: "/carts/temp-cart",

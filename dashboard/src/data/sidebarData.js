@@ -6,6 +6,7 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { PiUsersFour } from "react-icons/pi";
 import { GoChecklist } from "react-icons/go";
 import { TbUserQuestion } from "react-icons/tb";
+import { NotebookPen } from "lucide-react";
 
 // Define the roles for each user type
 const ROLES = {
@@ -66,6 +67,24 @@ export const AllRoutes = [
     label: "Brands",
     link: "/brands",
     icon: GoTag,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    label: "Blogs",
+    link: "/blogs",
+    icon: NotebookPen,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    label: "Blogs",
+    link: "/blogs/create",
+    icon: NotebookPen,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    label: "Blogs",
+    link: "/blogs/edit/[id]",
+    icon: NotebookPen,
     roles: [ROLES.ADMIN],
   },
   {
