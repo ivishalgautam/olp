@@ -16,6 +16,7 @@ export const navList = [
   { title: "Home", href: "/" },
   { title: "About", href: "" },
   { title: "Products", href: "/products?page=1" },
+  { title: "Blogs", href: "/blogs" },
   { title: "Contact", href: "/contact" },
 ];
 

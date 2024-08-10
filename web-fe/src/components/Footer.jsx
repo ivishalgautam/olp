@@ -71,25 +71,27 @@ export default function Footer() {
               <div className="col-span-2 text-white md:col-span-2 lg:col-span-1">
                 <H4>Quick links</H4>
                 <ul className="mt-6 space-y-4">
-                  {["home", "about", "products", "contact"].map((item) => (
-                    <li
-                      key={item}
-                      className="transition-transform hover:translate-x-1"
-                    >
-                      <Link
-                        href={
-                          item === "home"
-                            ? "/"
-                            : item === "about"
-                              ? ""
-                              : `/${item}`
-                        }
-                        className="text-sm capitalize"
+                  {["home", "about", "products", "blogs", "contact"].map(
+                    (item) => (
+                      <li
+                        key={item}
+                        className="transition-transform hover:translate-x-1"
                       >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
+                        <Link
+                          href={
+                            item === "home"
+                              ? "/"
+                              : item === "about"
+                                ? ""
+                                : `/${item}`
+                          }
+                          className="text-sm capitalize"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
 
