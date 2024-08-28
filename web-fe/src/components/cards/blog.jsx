@@ -13,8 +13,8 @@ export default function BlogCard({ blog }) {
           <figure>
             <Image
               src={`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${blog.image}`}
-              width={300}
-              height={300}
+              width={500}
+              height={500}
               alt={blog.title}
               className="aspect-video"
             />

@@ -2,11 +2,11 @@ import Blogs from "@/components/blogs";
 import { H1 } from "@/components/ui/typography";
 
 export const metadata = {
-  title: "Blogs | Infrakeys",
-  description: "Infrakeys Blogs",
+  title: "Blogs | OnlineParts",
+  description: "OnlineParts Blogs",
   openGraph: {
-    title: "Infrakeys Blogs",
-    description: "Infrakeys Blogs",
+    title: "OnlineParts Blogs",
+    description: "OnlineParts Blogs",
   },
   alternates: {
     canonical: `/blogs`,
