@@ -36,6 +36,7 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
       meta_title: "",
       meta_description: "",
       meta_keywords: "",
+      posted_on: "",
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -51,7 +52,6 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
     isLoading: isCategoryLoading,
     isFetching,
   } = useFetchCategories();
-  console.log({ categories });
 
   const formattedCategories = categories?.data?.map(
     ({ id: value, name: label }) => ({
@@ -78,6 +78,7 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
       meta_description: data.meta_description,
       meta_keywords: data.meta_keywords,
       faq: data.faq,
+      posted_on: data.posted_on,
     };
 
     if (type === "create") {
@@ -110,6 +111,7 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
         data && setValue("meta_keywords", data.meta_keywords);
         data && setValue("slug", data.slug);
         data && setValue("is_active", data.is_active);
+        data && setValue("posted_on", data.posted_on.split("T")[0]);
         data && data?.faq && setValue("faq", data.faq);
         // data?.faq?.map(({ question, answer }) => {
         //   append({ question, answer });
@@ -283,7 +285,6 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
         {/* faq */}
         <div className="col-span-3 bg-white space-y-2">
           <Title text={"FAQ"} />
-
           <div className="space-y-4">
             {fields.map((field, key) => (
               <div key={key} className="space-y-2">
@@ -338,6 +339,16 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
               Add
             </Button>
           )}
+        </div>
+
+        <div>
+          <Label>Posted On</Label>
+
+          <Input
+            type="date"
+            {...register("posted_on")}
+            placeholder="Select posted on date"
+          />
         </div>
 
         <div className="space-y-4">
