@@ -33,24 +33,32 @@ export default function Hero() {
           <Link href="/products?page=1&part=genuine">
             <Image
               src={"/genuine-big.jpg"}
-              width={1000}
-              height={500}
+              width={300}
+              height={300}
               alt="genuine"
+              className="aspect-video h-full w-full object-contain object-center"
             />
           </Link>
         </div>
         <div className="">
           <Link href="/products?page=1&part=oem">
-            <Image src={"/oem-big.jpg"} width={1000} height={500} alt="oem" />
+            <Image
+              src={"/oem-big.jpg"}
+              width={300}
+              height={300}
+              alt="oem"
+              className="aspect-video h-full w-full object-contain object-center"
+            />
           </Link>
         </div>
         <div className="">
           <Link href="/products?page=1&part=aftermarket">
             <Image
               src={"/aftermarket-big.jpg"}
-              width={1000}
-              height={500}
+              width={300}
+              height={300}
               alt="aftermarket"
+              className="aspect-video h-full w-full object-contain object-center"
             />
           </Link>
         </div>

@@ -8,8 +8,8 @@ export default function CategoryCard({ slug, image, name }) {
         <div>
           <figure className="mx-auto h-36 w-36">
             <Image
-              width={200}
-              height={200}
+              width={100}
+              height={100}
               src={`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${image}`}
               alt={name}
               className="h-full w-full rounded object-cover object-center"

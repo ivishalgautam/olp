@@ -65,8 +65,8 @@ export default function ProductCard({
         <Link href={`/products/${slug}`}>
           <figure className="mx-auto h-36 w-36 overflow-hidden rounded-lg">
             <Image
-              width={500}
-              height={500}
+              width={100}
+              height={100}
               src={`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${pictures[0]}`}
               alt={title}
               className="h-full w-full object-cover object-center transition-transform hover:scale-110"
