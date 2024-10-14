@@ -138,7 +138,7 @@ export default async function Page({ params: { slug } }) {
 
                         <div className="mt-2 flex items-center justify-start gap-1 text-[10px] font-medium text-gray-400">
                           <Clock size={15} />{" "}
-                          {data?.posted_on
+                          {blog?.posted_on
                             ? moment(blog.posted_on).format("DD MMM, Y")
                             : moment(blog.created_at).format("DD MMM, Y")}
                         </div>
