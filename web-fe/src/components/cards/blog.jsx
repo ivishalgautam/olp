@@ -6,6 +6,10 @@ import { H6 } from "../ui/typography";
 import moment from "moment";
 
 export default function BlogCard({ blog }) {
+  const postedOn =
+    moment(blog.posted_on).format("DD MMM, Y") ??
+    moment(blog.created_at).format("DD MMM, Y");
+
   return (
     <Link href={`/blogs/${blog.slug}`}>
       <div className="group overflow-hidden rounded-lg bg-white shadow">
@@ -24,7 +28,7 @@ export default function BlogCard({ blog }) {
         <div className="space-y-4 p-3">
           {/* date */}
           <div className="my-1 mb-3 flex items-center justify-start gap-1 text-xs font-medium text-gray-400">
-            <Clock size={18} /> {moment(blog.created_at).format("DD MMM, Y")}
+            <Clock size={18} /> {postedOn}
           </div>
 
           {/* categories */}

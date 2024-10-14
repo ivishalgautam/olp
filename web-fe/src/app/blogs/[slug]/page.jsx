@@ -45,7 +45,9 @@ const getRelatedBlogs = async (id) => {
 export default async function Page({ params: { slug } }) {
   const blog = await getBlog(slug);
   const { blogs: relatedBlogs } = await getRelatedBlogs(blog?.id);
-
+  const postedOn =
+    moment(blog.posted_on).format("DD MMM, Y") ??
+    moment(blog.created_at).format("DD MMM, Y");
   return (
     <div className="container p-4">
       <div className="mx-auto space-y-4">
@@ -65,7 +67,7 @@ export default async function Page({ params: { slug } }) {
           <div className="col-span-4 space-y-4 rounded-lg bg-white p-8 lg:col-span-3">
             {/* date */}
             <div className="flex items-center justify-start gap-1 text-xs font-medium text-gray-400">
-              <Clock size={18} /> {moment(blog.created_at).format("DD MMM, Y")}
+              <Clock size={18} /> {postedOn}
             </div>
 
             {/* title */}
@@ -74,7 +76,7 @@ export default async function Page({ params: { slug } }) {
             {/* blog content */}
             <div className="w-full">
               <div
-                className="prose prose-slate prose-orange w-full rounded-lg lg:prose-lg prose-h1:mb-0 prose-h1:mt-5 prose-h2:mb-0 prose-h2:mt-5 prose-h3:mb-0 prose-h3:mt-5  prose-h4:mb-0 prose-h4:mt-5 prose-h5:mb-0 prose-h5:mt-5 prose-h6:mb-0 prose-h6:mt-5 prose-p:m-0 prose-img:rounded-xl"
+                className="prose prose-slate prose-orange lg:prose-lg prose-h1:mb-0 prose-h1:mt-5 prose-h2:mb-0 prose-h2:mt-5 prose-h3:mb-0 prose-h3:mt-5 prose-h4:mb-0 prose-h4:mt-5  prose-h5:mb-0 prose-h5:mt-5 prose-h6:mb-0 prose-h6:mt-5 prose-p:m-0 prose-img:rounded-xl w-full rounded-lg"
                 dangerouslySetInnerHTML={{ __html: blog?.content }}
               />
             </div>
@@ -136,7 +138,8 @@ export default async function Page({ params: { slug } }) {
 
                         <div className="mt-2 flex items-center justify-start gap-1 text-[10px] font-medium text-gray-400">
                           <Clock size={15} />{" "}
-                          {moment(blog.created_at).format("DD MMM, Y")}
+                          {moment(blog.posted_on).format("DD MMM, Y") ??
+                            moment(blog.created_at).format("DD MMM, Y")}
                         </div>
                       </div>
                     </Link>
