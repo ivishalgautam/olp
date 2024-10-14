@@ -45,9 +45,9 @@ const getRelatedBlogs = async (id) => {
 export default async function Page({ params: { slug } }) {
   const blog = await getBlog(slug);
   const { blogs: relatedBlogs } = await getRelatedBlogs(blog?.id);
-  const postedOn =
-    moment(blog.posted_on).format("DD MMM, Y") ??
-    moment(blog.created_at).format("DD MMM, Y");
+  const postedOn = blog?.posted_on
+    ? moment(blog.posted_on).format("DD MMM, Y")
+    : moment(blog.created_at).format("DD MMM, Y");
   return (
     <div className="container p-4">
       <div className="mx-auto space-y-4">
@@ -138,8 +138,9 @@ export default async function Page({ params: { slug } }) {
 
                         <div className="mt-2 flex items-center justify-start gap-1 text-[10px] font-medium text-gray-400">
                           <Clock size={15} />{" "}
-                          {moment(blog.posted_on).format("DD MMM, Y") ??
-                            moment(blog.created_at).format("DD MMM, Y")}
+                          {data?.posted_on
+                            ? moment(blog.posted_on).format("DD MMM, Y")
+                            : moment(blog.created_at).format("DD MMM, Y")}
                         </div>
                       </div>
                     </Link>

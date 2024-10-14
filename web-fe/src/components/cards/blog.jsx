@@ -6,9 +6,9 @@ import { H6 } from "../ui/typography";
 import moment from "moment";
 
 export default function BlogCard({ blog }) {
-  const postedOn =
-    moment(blog.posted_on).format("DD MMM, Y") ??
-    moment(blog.created_at).format("DD MMM, Y");
+  const postedOn = blog?.posted_on
+    ? moment(blog.posted_on).format("DD MMM, Y")
+    : moment(blog.created_at).format("DD MMM, Y");
 
   return (
     <Link href={`/blogs/${blog.slug}`}>
