@@ -78,7 +78,7 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
       meta_description: data.meta_description,
       meta_keywords: data.meta_keywords,
       faq: data.faq,
-      posted_on: data.posted_on,
+      posted_on: data.posted_on ? data.posted_on : new Date(),
     };
 
     if (type === "create") {
