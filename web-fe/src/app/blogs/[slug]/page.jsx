@@ -43,7 +43,9 @@ const getRecentBlogs = async (limit) => {
 
 export default async function Page({ params: { slug } }) {
   const blog = await getBlog(slug);
-  const recentBlogs = await getRecentBlogs(10);
+  const recentBlogs = (await getRecentBlogs(11)).filter(
+    (blg) => blg.slug !== slug,
+  );
   const postedOn = blog?.posted_on
     ? moment(blog.posted_on).format("DD MMM, Y")
     : moment(blog.created_at).format("DD MMM, Y");
