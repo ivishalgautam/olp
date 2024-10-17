@@ -46,7 +46,6 @@ export default function ChangePasswordForm({ token }) {
       router.push("/login");
     },
     onError: (error) => {
-      console.log({ error });
       toast.error(
         error.response.data.message ?? "Reset password link expired!",
       );
@@ -61,8 +60,6 @@ export default function ChangePasswordForm({ token }) {
       token: token,
       new_password: data.new_password,
     };
-
-    console.log({ data, payload });
 
     handleUpdate(payload);
   };

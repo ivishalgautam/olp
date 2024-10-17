@@ -31,7 +31,6 @@ export default function ResetPasswordForm() {
       toast.success(response.message);
       router.push("/");
     } catch (error) {
-      console.log(error);
       return toast.error(error.message ?? "Unable to complete your request.");
     } finally {
       setLoading(false);

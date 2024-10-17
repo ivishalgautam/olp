@@ -35,8 +35,6 @@ export default function ContactForm() {
     createMutation.mutate(data);
   };
 
-  console.log(errors);
-
   const className = "bg-gray-100 rounded-[60px] p-6 py-5.5";
 
   return (

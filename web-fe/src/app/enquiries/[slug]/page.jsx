@@ -56,7 +56,6 @@ export default function Page({ params: { slug } }) {
       router.push("/");
     },
     onError: (error) => {
-      console.log({ error });
       toast.error(error.message);
     },
   });
@@ -70,7 +69,6 @@ export default function Page({ params: { slug } }) {
     },
     onError: (error) => {
       toast.error(error.message);
-      console.log({ error });
     },
   });
 
@@ -99,7 +97,7 @@ export default function Page({ params: { slug } }) {
             }),
           );
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       } finally {
         setIsLoading(false);
       }
@@ -127,7 +125,6 @@ export default function Page({ params: { slug } }) {
       router.push("/customer/orders");
     },
     onError: (error) => {
-      console.log({ error });
       toast.error(error.message);
     },
   });
@@ -139,7 +136,7 @@ export default function Page({ params: { slug } }) {
   if (isLoading) {
     return <Spinner />;
   }
-  
+
   return (
     <section className="py-6">
       <div className="container rounded-md bg-white p-4">

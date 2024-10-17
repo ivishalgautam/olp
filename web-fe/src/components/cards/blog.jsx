@@ -11,8 +11,8 @@ export default function BlogCard({ blog }) {
     : moment(blog.created_at).format("DD MMM, Y");
 
   return (
-    <Link href={`/blogs/${blog.slug}`}>
-      <div className="group overflow-hidden rounded-lg bg-white shadow">
+    <div className="group overflow-hidden rounded-lg bg-white shadow">
+      <Link href={`/blogs/${blog.slug}`}>
         <div>
           <figure>
             <Image
@@ -24,42 +24,48 @@ export default function BlogCard({ blog }) {
             />
           </figure>
         </div>
+      </Link>
 
-        <div className="space-y-4 p-3">
-          {/* date */}
-          <div className="my-1 mb-3 flex items-center justify-start gap-1 text-xs font-medium text-gray-400">
-            <Clock size={18} /> {postedOn}
-          </div>
+      <div className="space-y-4 p-3">
+        {/* date */}
+        <div className="my-1 mb-3 flex items-center justify-start gap-1 text-xs font-medium text-gray-400">
+          <Clock size={18} /> {postedOn}
+        </div>
 
-          {/* categories */}
-          <div className="flex flex-wrap items-center justify-start gap-1">
-            {blog.categories.map((cat) => (
-              <Link
-                href={`/category/${cat.slug}`}
-                className="rounded-full bg-gray-200 p-1 px-2 text-xs font-semibold capitalize text-black/50 transition-colors hover:bg-primary hover:text-white"
-                key={cat.id}
-              >
-                {cat.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* title and short desc */}
-          <div className="space-y-1">
-            <H6
-              className={
-                "line-clamp-2 h-[40px] leading-5 md:line-clamp-1 md:h-auto lg:line-clamp-2 lg:h-[40px]"
-              }
+        {/* categories */}
+        <div className="flex flex-wrap items-center justify-start gap-1">
+          {blog.categories.map((cat) => (
+            <Link
+              href={`/category/${cat.slug}`}
+              className="rounded-full bg-gray-200 p-1 px-2 text-xs font-semibold capitalize text-black/50 transition-colors hover:bg-primary hover:text-white"
+              key={cat.id}
             >
-              {blog.title}
-            </H6>
-            <p className="line-clamp-3 h-[48px] text-ellipsis text-xs text-gray-400">
-              {blog.short_description}
-            </p>
-          </div>
+              {cat.name}
+            </Link>
+          ))}
+        </div>
 
-          {/* read more */}
-          <div className="mt-auto">
+        {/* title and short desc */}
+        <div>
+          <Link href={`/blogs/${blog.slug}`}>
+            <div className="space-y-1">
+              <H6
+                className={
+                  "line-clamp-2 h-[40px] leading-5 md:line-clamp-1 md:h-auto lg:line-clamp-2 lg:h-[40px]"
+                }
+              >
+                {blog.title}
+              </H6>
+              <p className="line-clamp-3 h-[48px] text-ellipsis text-xs text-gray-400">
+                {blog.short_description}
+              </p>
+            </div>
+          </Link>
+        </div>
+
+        {/* read more */}
+        <div className="mt-auto">
+          <Link href={`/blogs/${blog.slug}`}>
             <div className="flex items-center justify-end gap-2 pr-3 text-xs font-semibold">
               <div className="inline-block text-[11px] font-semibold uppercase text-gray-400">
                 Read more
@@ -68,9 +74,9 @@ export default function BlogCard({ blog }) {
                 <ChevronRight size={18} />
               </span>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

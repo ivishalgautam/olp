@@ -15,7 +15,6 @@ export default function Blogs() {
     queryFn: fetchBlogs,
     queryKey: ["blogs"],
   });
-  console.log({ data });
   if (isLoading) return <Spinner />;
 
   return (

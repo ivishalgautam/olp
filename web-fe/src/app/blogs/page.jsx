@@ -13,7 +13,7 @@ export const metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className="container py-4">
       <H1 className={"my-8 text-center"}>Our blogs</H1>

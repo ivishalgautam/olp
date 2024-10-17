@@ -34,17 +34,16 @@ const getBlog = async (slug) => {
   return data;
 };
 
-const getRelatedBlogs = async (id) => {
-  if (!id) return;
+const getRecentBlogs = async (limit) => {
   const { data } = await axios.get(
-    `${baseUrl}${endpoints.blogs.getAll}/getRelatedBlogs/${id}`,
+    `${baseUrl}${endpoints.blogs.getAll}/getRecentBlogs?limit=${limit}`,
   );
-  return data[0];
+  return data;
 };
 
 export default async function Page({ params: { slug } }) {
   const blog = await getBlog(slug);
-  const { blogs: relatedBlogs } = await getRelatedBlogs(blog?.id);
+  const recentBlogs = await getRecentBlogs(10);
   const postedOn = blog?.posted_on
     ? moment(blog.posted_on).format("DD MMM, Y")
     : moment(blog.created_at).format("DD MMM, Y");
@@ -76,7 +75,7 @@ export default async function Page({ params: { slug } }) {
             {/* blog content */}
             <div className="w-full">
               <div
-                className="prose prose-slate prose-orange lg:prose-lg prose-h1:mb-0 prose-h1:mt-5 prose-h2:mb-0 prose-h2:mt-5 prose-h3:mb-0 prose-h3:mt-5 prose-h4:mb-0 prose-h4:mt-5  prose-h5:mb-0 prose-h5:mt-5 prose-h6:mb-0 prose-h6:mt-5 prose-p:m-0 prose-img:rounded-xl w-full rounded-lg"
+                className="prose prose-slate prose-orange w-full rounded-lg lg:prose-lg prose-h1:mb-0 prose-h1:mt-5 prose-h2:mb-0 prose-h2:mt-5 prose-h3:mb-0 prose-h3:mt-5  prose-h4:mb-0 prose-h4:mt-5 prose-h5:mb-0 prose-h5:mt-5 prose-h6:mb-0 prose-h6:mt-5 prose-p:m-0 prose-img:rounded-xl"
                 dangerouslySetInnerHTML={{ __html: blog?.content }}
               />
             </div>
@@ -95,12 +94,12 @@ export default async function Page({ params: { slug } }) {
 
           <div className="col-span-4 lg:col-span-1">
             <div className="h-auto rounded-lg bg-white p-8">
-              <H5>Related blogs</H5>
+              <H5>Recent blogs</H5>
               <div className="mt-2 space-y-2">
-                {!relatedBlogs?.length && (
-                  <P className={"text-xs"}>No related blogs</P>
+                {!recentBlogs?.length && (
+                  <P className={"text-xs"}>No recent blogs</P>
                 )}
-                {relatedBlogs?.map((blog) => (
+                {recentBlogs?.map((blog) => (
                   <div key={blog.id} className="group">
                     <Link
                       href={`/blogs/${blog.slug}`}

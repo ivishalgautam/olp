@@ -45,7 +45,6 @@ export default function CartForm({ data, handleCreate }) {
     },
     onError: (error) => {
       toast.error(error.message);
-      console.log({ error });
     },
   });
 

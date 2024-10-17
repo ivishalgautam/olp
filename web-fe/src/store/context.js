@@ -19,7 +19,7 @@ function Context({ children }) {
         const response = await http().get(endpoints.profile);
         setUser(response);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       } finally {
         setIsUserLoading(false);
       }

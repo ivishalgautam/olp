@@ -30,7 +30,7 @@ export default function Page() {
       router.push("/");
     },
     onError: (error) => {
-      console.log({ error });
+      // console.log({ error });
       toast.error(error.message);
     },
   });

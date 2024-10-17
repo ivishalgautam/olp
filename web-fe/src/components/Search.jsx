@@ -22,7 +22,7 @@ export default function Search() {
   const params = useSearchParams();
   const query = params.get("q") ?? "";
   const [searchResults, setSearchResults] = useState([]);
-  const [inputVal, setInputVal] = useState();
+  const [inputVal, setInputVal] = useState("");
   const [isResultsVisible, setIsResultsVisible] = useState(false);
   const throttleTimeoutRef = useRef(null);
   const containerRef = useRef(null);
@@ -37,7 +37,6 @@ export default function Search() {
     },
     onError: (error) => {
       toast.error(error.message);
-      console.log({ error });
     },
   });
 

@@ -35,7 +35,6 @@ export default function LoginForm({ setIsResetPassword }) {
 
       return response.data;
     } catch (error) {
-      console.log(error);
       if (isObject(error)) {
         return toast.error(error.message);
       } else {

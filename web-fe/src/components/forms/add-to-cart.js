@@ -21,7 +21,6 @@ export default function AddToCart({ id }) {
     },
     onError: (error) => {
       toast.error(error.message);
-      console.log({ error });
     },
   });
 
