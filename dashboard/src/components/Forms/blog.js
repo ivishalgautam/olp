@@ -61,6 +61,7 @@ export default function BlogForm({ type, blogId, handleCreate, handleUpdate }) {
   );
 
   const handleFileChange = async (event) => {
+    console.log(event.target.files[0]);
     upload(event);
   };
 
