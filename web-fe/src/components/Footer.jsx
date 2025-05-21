@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { LucideMailOpen, Search } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -13,16 +13,19 @@ export default function Footer() {
       <div className="bg-primary">
         <div className="container py-6">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-5 sm:gap-0">
-            <div className="col-span-3 flex items-center justify-start gap-4 text-white">
-              <IoMdPaperPlane size={30} />
+            <div className="col-span-3 flex items-center justify-start gap-4 text-secondary">
+              <LucideMailOpen size={70} />
               <H4>Sign up to Newsletter</H4>
             </div>
 
             <div className="col-span-2 flex items-center justify-center">
-              <Input
-                placeholder="Enter your email"
-                className="rounded-l-full"
-              />
+              <div className="flex items-center justify-start rounded-l-full bg-white/60 pl-3">
+                <Search />
+                <Input
+                  placeholder="Enter your email"
+                  className="rounded-l-full bg-transparent"
+                />
+              </div>
               <Button variant="secondary" className="rounded-r-full text-white">
                 Subscribe
               </Button>

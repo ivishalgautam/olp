@@ -15,7 +15,7 @@ export const metadata = {
 
 export default async function Page() {
   return (
-    <div className="container py-4">
+    <div className="container py-4 pt-32">
       <H1 className={"my-8 text-center"}>Our blogs</H1>
       <Blogs />
     </div>

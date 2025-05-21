@@ -147,3 +147,20 @@
   height: 2rem !important;
   border-radius: 999999px;
 }
+
+/* language switcher */
+#\:0\.targetLanguage > :nth-child(3),
+#\:0\.targetLanguage > :nth-child(4) {
+  display: none;
+}
+
+.goog-te-gadget-simple,
+.goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: flex !important;
+}
+
+.goog-te-gadget-simple {
+  border-radius: 66px;
+  padding: 4px;
+  background: #ffffff92 !important;
+}

@@ -109,26 +109,25 @@ export default function Search() {
 
   return (
     <div className="relative h-full w-full">
-      <div className="relative">
+      <div className="relative flex h-8 max-w-xs items-center justify-start rounded-full bg-white/60">
+        <Link
+          href={`/products/search?q=${inputVal}`}
+          className="rounded-full p-2 transition-colors hover:bg-white"
+        >
+          <FiSearch size={15} />
+        </Link>
+
         <Input
           placeholder="Search for items"
-          className={cn("h-full w-full rounded-full p-4", {
-            "relative z-50": inputVal,
-          })}
+          className={cn(
+            "h-full w-full rounded-full border-none bg-transparent outline-none focus-within:border-none focus-within:outline-none focus:border-none focus:outline-none",
+            {
+              "relative z-50": inputVal,
+            },
+          )}
           onChange={(e) => setInputVal(e.target.value)}
           value={inputVal}
         />
-        <Link
-          href={`/products/search?q=${inputVal}`}
-          className={cn(
-            "absolute right-0.5 top-1/2 z-0 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white",
-            {
-              "z-50": inputVal,
-            },
-          )}
-        >
-          <FiSearch size={25} />
-        </Link>
       </div>
       {inputVal && searchResults.length > 0 && (
         <div className="relative z-50" ref={containerRef}>

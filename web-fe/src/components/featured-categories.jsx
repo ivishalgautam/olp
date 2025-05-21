@@ -54,7 +54,7 @@ export default function FeaturedCategories() {
   return (
     <div className="bg-[#f4f5f9] py-4">
       <div className="container space-y-4">
-        <H3>
+        <H3 className={"mb-10"}>
           <span className="border-b-2 border-primary py-3">Featured </span>{" "}
           categories
         </H3>

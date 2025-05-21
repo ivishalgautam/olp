@@ -124,7 +124,7 @@ export default function ContactForm() {
             {...register("message", {
               required: "required",
             })}
-            className={`${className} min-h-[200px] rounded-3xl`}
+            className={`${className} min-h-[100px] rounded-3xl`}
           />
           {errors.message && (
             <span className="text-red-600">{errors.message.message}</span>

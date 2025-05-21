@@ -39,11 +39,16 @@ export default function BrowseCategory() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger onMouseOver={() => setIsCategory(true)}>
+            <NavigationMenuTrigger
+              className={
+                "h-3 rounded-full border border-black bg-white/60 px-2 py-3"
+              }
+              onMouseOver={() => setIsCategory(true)}
+            >
               <span>Browse categories</span>
             </NavigationMenuTrigger>
 
-            <NavigationMenuContent className="max-h-96 overflow-y-scroll">
+            <NavigationMenuContent className="max-h-96 overflow-y-auto">
               <ul className="relative grid w-[350px] grid-cols-2 gap-3 p-6 md:w-[400px] md:grid-cols-3 lg:w-[500px]">
                 {data?.map((cat) => (
                   <li key={cat.id} className="">

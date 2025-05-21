@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AuthLayout({ children }) {
   return (
-    <section className="bg-gray-200 py-16">
+    <section className="bg-gray-200 py-16 pt-36">
       <div className="container">
         <div className="mx-auto grid w-full grid-cols-1 overflow-hidden rounded-lg bg-white shadow-lg md:grid-cols-2 lg:w-[80%]">
           {/* left */}

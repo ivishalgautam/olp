@@ -40,7 +40,7 @@ export default function Page() {
   };
 
   return (
-    <section className="rounded-md p-4">
+    <section className="rounded-md bg-primary p-4 pt-32">
       <div className="container">
         <CartForm data={data?.data} handleCreate={handleCreate} />
       </div>

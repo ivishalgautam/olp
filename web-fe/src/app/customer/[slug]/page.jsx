@@ -23,7 +23,7 @@ export default function Page({ params: { slug } }) {
   if (!user) return <Spinner />;
 
   return (
-    <section className="py-10">
+    <section className="bg-primary py-10 pt-32">
       <div className="container">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4 lg:col-span-3">

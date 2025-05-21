@@ -21,7 +21,7 @@ export default function Page() {
   }, [q]);
 
   return (
-    <section className="py-6">
+    <section className="py-6 pt-24">
       <div className="container space-y-8">
         <H4>Search result for: &apos;{q}&apos;</H4>
 

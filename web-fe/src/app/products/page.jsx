@@ -44,7 +44,7 @@ export default function Page() {
   });
 
   return (
-    <section className="py-6">
+    <section className="py-6 pt-36">
       <div className="container">
         <div>
           <ProductsWithFilter data={data?.data} />

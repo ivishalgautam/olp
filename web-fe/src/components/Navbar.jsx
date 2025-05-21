@@ -47,20 +47,7 @@ export default function Navbar({ data }) {
           <div className="hidden md:block">
             <BrowseCategory />
           </div>
-          <nav className="hidden md:block">
-            <ul className="flex gap-8">
-              {navList.map(({ title, href }) => (
-                <li key={title}>
-                  <Link
-                    href={href}
-                    className="text-sm font-semibold text-white"
-                  >
-                    {title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+
           <div className="hidden md:block">
             <button className="flex items-center justify-center gap-2 text-white">
               <MdOutlineLocalPhone />
