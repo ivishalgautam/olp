@@ -13,13 +13,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { DialogSignUpHomeForm } from "../forms/dialog-signup-home";
 import Image from "next/image";
-import DialogOtpHomeForm from "../forms/dialog-otp-home";
+import DialogSignUpHomeForm from "../forms/dialog-signup-home";
 
 export default function Layout({ children }) {
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [phone, setPhone] = useState("");
   const [isModal, setIsModal] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -75,7 +72,7 @@ export default function Layout({ children }) {
   };
 
   useEffect(() => {
-    if (pathname === "/" && !user) {
+    if (pathname === "/") {
       setTimeout(() => {
         setIsModal(true);
       }, 10 * 1000);
@@ -104,14 +101,8 @@ export default function Layout({ children }) {
                 alt="signup"
                 className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              {isOtpSent ? (
-                <DialogOtpHomeForm phone={phone} setIsModal={setIsModal} />
-              ) : (
-                <DialogSignUpHomeForm
-                  setIsOtpSent={setIsOtpSent}
-                  setPhone={setPhone}
-                />
-              )}
+
+              <DialogSignUpHomeForm setIsModal={setIsModal} />
             </div>
           </DialogContent>
         </Dialog>

@@ -3,6 +3,8 @@ import FeaturedProducts from "@/components/featured-products";
 import ProductsWithTabs from "@/components/products-with-tabs";
 import FeaturedCategories from "@/components/featured-categories";
 import Types from "@/components/types";
+import ContactForm from "@/components/forms/contact";
+import ContactSection from "@/components/contact-section";
 
 export default function Home() {
   return (
@@ -10,6 +12,7 @@ export default function Home() {
       <div>
         <Hero />
         <Types />
+        <ContactSection />
       </div>
       <FeaturedCategories />
       <ProductsWithTabs />

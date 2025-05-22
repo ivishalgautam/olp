@@ -1,282 +1,167 @@
 "use client";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+
+import { useForm } from "react-hook-form";
+import { ChevronDown } from "lucide-react";
 import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
-import { FaRegEye } from "react-icons/fa";
 import { toast } from "sonner";
-import ReactSelect from "react-select";
-import Link from "next/link";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { H1, P } from "../ui/typography";
-import { countries } from "@/data/countryCodes";
+import { useMutation } from "@tanstack/react-query";
 
-async function createCustomer(data) {
-  return http().post(endpoints.users.getAll, data);
-}
+const createRegistration = async (data) => {
+  return await http().post(endpoints.registrations.getAll, data);
+};
 
-export function DialogSignUpBlogForm() {
+export default function DialogSignUpBlogForm({ setIsModal }) {
   const {
     register,
-    control,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
+    reset,
   } = useForm();
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [showPasswords, setShowPasswords] = useState({
-    password: false,
-    cpassword: false,
-  });
 
-  const createMutation = useMutation(createCustomer, {
-    onSuccess: () => {
-      setIsOtpSent(true);
+  const createMutation = useMutation(createRegistration, {
+    onSuccess: (data) => {
+      toast.success(data.message);
       reset();
+      setIsModal(false);
     },
     onError: (error) => {
-      toast.error(error?.message ?? "Error registering customer!");
+      toast.error(error.message);
     },
   });
 
-  const handleCreate = async (data) => {
+  const onSubmit = (data) => {
     createMutation.mutate(data);
   };
 
-  const onSubmit = (data) => {
-    const payload = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      mobile_number: data.mobile_number,
-      country_code: data.country_code.value,
-      email: data.email,
-      username: data.username,
-      password: data.password,
-    };
-
-    handleCreate(payload);
-    setPhone(payload.mobile_number);
-  };
+  const industries = [
+    "Technology",
+    "Healthcare",
+    "Finance",
+    "Education",
+    "Retail",
+    "Manufacturing",
+    "Other",
+  ];
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="relative w-full max-w-4xl rounded-xl bg-white/90 p-8 shadow-lg">
+      <div className="relative w-full max-w-md rounded-lg bg-white/80 p-6 shadow-lg">
         {/* 10% OFF Badge */}
-        <div className="absolute -right-8 -top-8 flex size-24 flex-col items-center justify-center rounded-full bg-red-500 font-bold text-white shadow-md">
-          <span className="text-4xl">10%</span>
+        <div className="absolute -right-8 -top-8 flex size-24 flex-col items-center justify-center rounded-full bg-red-500 font-bold text-white">
+          <span className="text-3xl">10%</span>
           <span className="-mt-1 text-sm">OFF</span>
         </div>
 
-        <h2 className="mb-2 text-3xl font-bold text-[#12548D]">
+        <h2 className="mb-2 text-2xl font-bold text-[#12548D]">
           Sign Up for Exclusive Offers!
         </h2>
-        <p className="mb-6 max-w-lg text-secondary">
+        <p className="mb-4 text-[#12548D]">
           Join our community and get the latest updates, discounts, and expert
-          tips delivered straight to your inbox.
+          tips delivered straight to our inbox.
         </p>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-full space-y-6"
-          autocomplete="off"
-        >
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            <div className="col-span-full">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="text"
-                placeholder="Email"
-                autocomplete="off"
+        <ul className="mb-6 text-[#12548D]">
+          <li className="flex items-start">
+            <span className="mr-2">•</span> Exclusive discounts and offers
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">•</span> Early access to new products
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">•</span> Expert tips and resources
+          </li>
+        </ul>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-4">
+            <div>
+              <input
+                type="email"
+                placeholder="Email Address"
+                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.email ? "border-red-500" : ""}`}
                 {...register("email", {
-                  required: "required",
+                  required: "Email is required",
                   pattern: {
-                    value: /\S+@\S+\.\S+/,
-                    message: "Entered value does not match email format",
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
                   },
                 })}
-                className="w-full rounded-md border-2 border-gray-500 bg-white p-3 text-secondary placeholder-secondary/60 "
               />
               {errors.email && (
-                <span className="mt-1 text-sm text-red-600">
+                <p className="mt-1 text-sm text-red-600">
                   {errors.email.message}
-                </span>
+                </p>
               )}
             </div>
 
             <div>
-              <Label htmlFor="first_name">First Name</Label>
-              <Input
+              <input
                 type="text"
-                placeholder="FirstName"
-                autocomplete="off"
-                {...register("first_name", { required: "required" })}
-                className="w-full rounded-md border-2 border-gray-500 bg-white p-3 text-secondary placeholder-secondary/60 "
+                placeholder="Name"
+                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.name ? "border-red-500" : ""}`}
+                {...register("name", { required: "Name is required" })}
               />
-              {errors.first_name && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.first_name.message}
-                </span>
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.name.message}
+                </p>
               )}
             </div>
 
-            <div>
-              <Label htmlFor="last_name">Last Name</Label>
-              <Input
-                type="text"
-                placeholder="Lastname"
-                autocomplete="off"
-                {...register("last_name")}
-                className="w-full rounded-md border-2 border-gray-500 bg-white p-3 text-secondary placeholder-secondary/60 "
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="country_code">Country code</Label>
-              <Controller
-                control={control}
-                name="country_code"
-                rules={{ required: "required" }}
-                render={({ field }) => (
-                  <ReactSelect
-                    onChange={field.onChange}
-                    value={field.value}
-                    options={countries.map(({ code: value, name }) => ({
-                      value,
-                      label: `${value} ${name}`,
-                    }))}
-                    placeholder="Country"
-                    autocomplete="off"
-                    classNames={{
-                      control: () =>
-                        "border-2 border-gray-500 bg-white text-secondary",
-                    }}
-                  />
-                )}
-              />
-              {errors.country_code && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.country_code.message}
-                </span>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="mobile_number">Mobile number</Label>
-              <Input
-                {...register("mobile_number", { required: "required" })}
-                placeholder="Enter mobile number"
-                autocomplete="off"
-                className="w-full rounded-md border-2 border-gray-500 bg-white p-3 text-secondary placeholder-secondary/60 "
-              />
-              {errors.mobile_number && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.mobile_number.message}
-                </span>
-              )}
-            </div>
-
-            <div className="col-span-full">
-              <Label htmlFor="username">Username</Label>
-              <Input
-                type="text"
-                placeholder="Username"
-                autocomplete="off"
-                {...register("username", {
-                  required: "required",
-                  pattern: {
-                    value: /^[a-z0-9]{3,16}$/,
-                    message:
-                      "Username should only contain lowercase letters. e.g. john",
-                  },
-                })}
-                className="w-full rounded-md border-2 border-gray-500 bg-white p-3 text-secondary placeholder-secondary/60 "
-              />
-              {errors.username && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.username.message}
-                </span>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="password">Password</Label>
-              <div className="relative">
-                <Input
-                  type={showPasswords.password ? "text" : "password"}
-                  placeholder="Password"
-                  autocomplete="off"
-                  {...register("password", { required: "required" })}
-                  className="w-full rounded-md border-2 border-gray-500 bg-white p-3 pr-10 text-secondary placeholder-secondary/60 "
-                />
-                <div
-                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-secondary"
-                  onClick={() =>
-                    setShowPasswords((prev) => ({
-                      ...prev,
-                      password: !prev.password,
-                    }))
-                  }
-                >
-                  <FaRegEye />
-                </div>
-              </div>
-              {errors.password && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.password.message}
-                </span>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="confirm_password">Confirm password</Label>
-              <div className="relative">
-                <Input
-                  type={showPasswords.cpassword ? "text" : "password"}
-                  placeholder="Confirm password"
-                  autocomplete="off"
-                  {...register("confirm_password", {
-                    required: "required",
-                    validate: (val) => {
-                      if (watch("password") !== val) {
-                        return "Your passwords do not match";
-                      }
+            <div className="space-y-4 sm:flex sm:gap-4 sm:space-y-0">
+              <div className="flex-1">
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
+                  {...register("phone", {
+                    pattern: {
+                      value: /^[0-9+-\s()]*$/,
+                      message: "Invalid phone number",
                     },
                   })}
-                  className="w-full rounded-md border-2 border-gray-500 bg-white p-3 pr-10 text-secondary placeholder-secondary/60 "
                 />
-                <div
-                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-secondary"
-                  onClick={() =>
-                    setShowPasswords((prev) => ({
-                      ...prev,
-                      cpassword: !prev.cpassword,
-                    }))
-                  }
-                >
-                  <FaRegEye />
-                </div>
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
-              {errors.confirm_password && (
-                <span className="mt-1 text-sm text-red-600">
-                  {errors.confirm_password.message}
-                </span>
-              )}
-            </div>
-          </div>
 
-          <div className="pt-2">
-            <Button
-              variant="ghost"
-              className="w-full rounded-md bg-[#12548D] px-4 py-3 font-semibold text-white transition-colors hover:bg-blue-800 hover:text-white"
+              <div className="relative flex-1">
+                <select
+                  className={`w-full appearance-none rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.industry ? "border-red-500" : ""}`}
+                  {...register("industry")}
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Industry Type
+                  </option>
+                  {industries.map((industry) => (
+                    <option key={industry} value={industry}>
+                      {industry}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#12548D]"
+                  size={18}
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={createMutation.isLoading}
+              className="w-full rounded-md bg-[#12548D] px-4 py-3 font-semibold text-white transition-colors hover:bg-blue-800"
             >
-              Sign Me Up & Stay Updated
-            </Button>
-            <p className="text-sm">
+              {createMutation.isLoading
+                ? "Signing Up..."
+                : "Sign Me Up & Stay Updated"}
+            </button>
+
+            <p className="mt-2 text-center text-xs text-[#12548D]/80">
               We respect your privacy. Your information is safe with us.
             </p>
           </div>

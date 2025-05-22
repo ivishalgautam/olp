@@ -49,6 +49,9 @@ export const endpoints = {
   queries: {
     getAll: "/queries",
   },
+  registrations: {
+    getAll: "/registrations",
+  },
   otp: {
     send: "/auth/otp/send",
     verify: "/auth/otp/verify",

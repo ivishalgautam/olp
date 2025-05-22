@@ -6,8 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import BlogCard from "./cards/blog";
 import Spinner from "./Spinner";
 import { useContext, useEffect, useState } from "react";
-import DialogOtpBlogForm from "./forms/dialog-otp-blog";
-import { DialogSignUpBlogForm } from "./forms/dialog-signup-blog";
+import DialogSignUpBlogForm from "./forms/dialog-signup-blog";
 import {
   Dialog,
   DialogContent,
@@ -29,14 +28,12 @@ export default function Blogs() {
     queryFn: fetchBlogs,
     queryKey: ["blogs"],
   });
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [phone, setPhone] = useState("");
   const [isModal, setIsModal] = useState(false);
   const pathname = usePathname();
   const { user, isUserLoading } = useContext(MainContext);
 
   useEffect(() => {
-    if (pathname === "/blogs" && !user) {
+    if (pathname === "/blogs") {
       setTimeout(() => {
         setIsModal(true);
       }, 10 * 1000);
@@ -69,14 +66,8 @@ export default function Blogs() {
               alt="signup"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
-            {isOtpSent ? (
-              <DialogOtpBlogForm phone={phone} setIsModal={setIsModal} />
-            ) : (
-              <DialogSignUpBlogForm
-                setIsOtpSent={setIsOtpSent}
-                setPhone={setPhone}
-              />
-            )}
+
+            <DialogSignUpBlogForm setIsModal={setIsModal} />
           </div>
         </DialogContent>
       </Dialog>
