@@ -68,7 +68,7 @@ export default function Layout({ children }) {
       {
         pageLanguage: "en",
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        includedLanguages: "tr,ru,pl,de,zh-CN,zh-TW,es,ja,fr,pt,ar,it",
+        includedLanguages: "tr,ru,pl,de,zh-CN,zh-TW,es,ja,fr,pt,ar,it,en",
         autoDisplay: false,
       },
       "google_translate_element",
