@@ -171,4 +171,16 @@ export const AllRoutes = [
     icon: TbUserQuestion,
     roles: [ROLES.ADMIN],
   },
+  {
+    label: "Registrations",
+    link: "/registrations",
+    icon: TbUserQuestion,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    label: "Registrations",
+    link: "/registrations/[id]",
+    icon: TbUserQuestion,
+    roles: [ROLES.ADMIN],
+  },
 ];

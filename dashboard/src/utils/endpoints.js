@@ -42,6 +42,9 @@ export const endpoints = {
   queries: {
     getAll: "/queries",
   },
+  registrations: {
+    getAll: "/registrations",
+  },
   blogs: {
     getAll: "/blogs",
   },
