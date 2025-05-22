@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="relative h-[90dvh] pt-40">
+    <div className="relative min-h-[90dvh] pt-40">
       <div className="absolute bottom-8 right-8 z-10 hidden items-center lg:flex">
         <figure className="size-10">
           <Image

@@ -15,6 +15,8 @@ import {
 } from "../ui/dialog";
 import Image from "next/image";
 import DialogSignUpHomeForm from "../forms/dialog-signup-home";
+import { X } from "lucide-react";
+import { Button } from "../ui/button";
 
 export default function Layout({ children }) {
   const [isModal, setIsModal] = useState(false);
@@ -93,7 +95,15 @@ export default function Layout({ children }) {
                 Sign up form.
               </DialogDescription>
             </DialogHeader>
-            <div className="relative p-8">
+            <div className="relative p-6">
+              <Button
+                type="button"
+                size="icon"
+                className="absolute left-4 top-10 z-10 rounded-full bg-white p-2 text-black"
+                onClick={() => setIsModal(false)}
+              >
+                <X size={15} />
+              </Button>
               <Image
                 src={"/03.jpg"}
                 width={200}

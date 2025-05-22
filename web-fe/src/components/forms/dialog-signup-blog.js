@@ -6,6 +6,7 @@ import http from "@/utils/http";
 import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
+import { Input } from "../ui/input";
 
 const createRegistration = async (data) => {
   return await http().post(endpoints.registrations.getAll, data);
@@ -48,20 +49,20 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <div className="relative w-full max-w-md rounded-lg bg-white/80 p-6 shadow-lg">
         {/* 10% OFF Badge */}
-        <div className="absolute -right-8 -top-8 flex size-24 flex-col items-center justify-center rounded-full bg-red-500 font-bold text-white">
+        <div className="absolute -right-10 -top-10 flex size-20 flex-col items-center justify-center rounded-full bg-red-500 font-bold text-white md:size-24">
           <span className="text-3xl">10%</span>
           <span className="-mt-1 text-sm">OFF</span>
         </div>
 
-        <h2 className="mb-2 text-2xl font-bold text-[#12548D]">
+        <h2 className="mb-2 text-lg font-bold text-[#12548D] md:text-2xl">
           Sign Up for Exclusive Offers!
         </h2>
-        <p className="mb-4 text-[#12548D]">
+        <p className="mb-4 text-sm text-[#12548D] md:text-base">
           Join our community and get the latest updates, discounts, and expert
           tips delivered straight to our inbox.
         </p>
 
-        <ul className="mb-6 text-[#12548D]">
+        <ul className="mb-6 text-sm text-blue-900 md:text-base">
           <li className="flex items-start">
             <span className="mr-2">•</span> Exclusive discounts and offers
           </li>
@@ -76,7 +77,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <div>
-              <input
+              <Input
                 type="email"
                 placeholder="Email Address"
                 className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.email ? "border-red-500" : ""}`}
@@ -96,7 +97,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
             </div>
 
             <div>
-              <input
+              <Input
                 type="text"
                 placeholder="Name"
                 className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.name ? "border-red-500" : ""}`}
@@ -111,7 +112,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
 
             <div className="space-y-4 sm:flex sm:gap-4 sm:space-y-0">
               <div className="flex-1">
-                <input
+                <Input
                   type="tel"
                   placeholder="Phone Number"
                   className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
@@ -131,7 +132,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
 
               <div className="relative flex-1">
                 <select
-                  className={`w-full appearance-none rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.industry ? "border-red-500" : ""}`}
+                  className={`w-full appearance-none rounded-md border-2 border-gray-300 bg-white/80 p-2 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.industry ? "border-red-500" : ""}`}
                   {...register("industry")}
                   defaultValue=""
                 >

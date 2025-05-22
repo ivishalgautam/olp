@@ -18,6 +18,8 @@ import {
 import { usePathname } from "next/navigation";
 import { MainContext } from "@/store/context";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import { X } from "lucide-react";
 
 async function fetchBlogs() {
   return await http().get(`${endpoints.blogs.getAll}?featured=true`);
@@ -59,6 +61,15 @@ export default function Blogs() {
             </DialogDescription>
           </DialogHeader>
           <div className="relative p-8">
+            <Button
+              type="button"
+              size="icon"
+              className="absolute left-4 top-10 z-10 rounded-full bg-white p-2 text-black"
+              onClick={() => setIsModal(false)}
+            >
+              <X size={15} />
+            </Button>
+
             <Image
               src={"/03.jpg"}
               width={200}
