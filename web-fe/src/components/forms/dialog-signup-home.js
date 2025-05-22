@@ -7,6 +7,7 @@ import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const createRegistration = async (data) => {
   return await http().post(endpoints.registrations.getAll, data);
@@ -80,7 +81,7 @@ export default function DialogSignUpHomeForm({ setIsModal }) {
               <Input
                 type="email"
                 placeholder="Email Address"
-                className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 p-3 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.email ? "border-red-500" : ""}`}
+                className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.email ? "border-red-500" : ""}`}
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -100,7 +101,7 @@ export default function DialogSignUpHomeForm({ setIsModal }) {
               <Input
                 type="text"
                 placeholder="Name"
-                className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 p-3 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.name ? "border-red-500" : ""}`}
+                className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.name ? "border-red-500" : ""}`}
                 {...register("name", { required: "Name is required" })}
               />
               {errors.name && (
@@ -115,7 +116,7 @@ export default function DialogSignUpHomeForm({ setIsModal }) {
                 <Input
                   type="tel"
                   placeholder="Phone Number"
-                  className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 p-3 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
+                  className={`w-full rounded-md border-2 border-amber-300 bg-amber-200/50 text-blue-900 placeholder-blue-900/60 focus:border-blue-900 focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
                   {...register("phone", {
                     pattern: {
                       value: /^[0-9+-\s()]*$/,
@@ -152,15 +153,15 @@ export default function DialogSignUpHomeForm({ setIsModal }) {
               </div>
             </div>
 
-            <button
+            <Button
               type="submit"
               disabled={createMutation.isLoading}
-              className="w-full rounded-md bg-blue-900 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-800"
+              className="w-full rounded-md bg-blue-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
             >
               {createMutation.isLoading
                 ? "Signing Up..."
                 : "Sign Me Up & Stay Updated"}
-            </button>
+            </Button>
 
             <p className="mt-2 text-center text-xs text-blue-900/80">
               We respect your privacy. Your information is safe with us.

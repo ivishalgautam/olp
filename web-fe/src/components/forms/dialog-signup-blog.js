@@ -7,6 +7,7 @@ import { endpoints } from "@/utils/endpoints";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const createRegistration = async (data) => {
   return await http().post(endpoints.registrations.getAll, data);
@@ -80,7 +81,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
               <Input
                 type="email"
                 placeholder="Email Address"
-                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.email ? "border-red-500" : ""}`}
+                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.email ? "border-red-500" : ""}`}
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -100,7 +101,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
               <Input
                 type="text"
                 placeholder="Name"
-                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.name ? "border-red-500" : ""}`}
+                className={`w-full rounded-md border-2 border-gray-300 bg-white/80 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.name ? "border-red-500" : ""}`}
                 {...register("name", { required: "Name is required" })}
               />
               {errors.name && (
@@ -115,7 +116,7 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
                 <Input
                   type="tel"
                   placeholder="Phone Number"
-                  className={`w-full rounded-md border-2 border-gray-300 bg-white/80 p-3 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
+                  className={`w-full rounded-md border-2 border-gray-300 bg-white/80 text-[#12548D] placeholder-[#12548D]/60 focus:border-[#12548D] focus:outline-none ${errors.phone ? "border-red-500" : ""}`}
                   {...register("phone", {
                     pattern: {
                       value: /^[0-9+-\s()]*$/,
@@ -152,15 +153,15 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
               </div>
             </div>
 
-            <button
+            <Button
               type="submit"
               disabled={createMutation.isLoading}
-              className="w-full rounded-md bg-[#12548D] px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-800"
+              className="w-full rounded-md bg-[#12548D] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
             >
               {createMutation.isLoading
                 ? "Signing Up..."
                 : "Sign Me Up & Stay Updated"}
-            </button>
+            </Button>
 
             <p className="mt-2 text-center text-xs text-[#12548D]/80">
               We respect your privacy. Your information is safe with us.
