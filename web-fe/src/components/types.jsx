@@ -8,7 +8,7 @@ export default function Types() {
   return (
     <div className="bg-black">
       <div className="container p-6">
-        <div className="mx-auto grid w-max grid-cols-1 gap-4 rounded-full border border-dashed border-primary p-4 px-20 sm:grid-cols-2 sm:gap-0 md:grid-cols-3">
+        <div className="mx-auto grid w-max grid-cols-1 gap-4 rounded-full p-4 px-20 sm:grid-cols-2 sm:gap-0 md:grid-cols-3 md:border md:border-dashed md:border-primary">
           {[
             {
               image: "/genuine.png",
