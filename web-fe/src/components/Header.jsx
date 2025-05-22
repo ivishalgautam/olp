@@ -17,6 +17,9 @@ import BrowseCategory from "./browse-category";
 import Hero from "./Hero";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Select } from "./ui/select";
+import { allLanguages } from "@/data/languages";
+import ReactSelect from "react-select";
 
 const fetchTempCart = async () => {
   const { data } = await http().get(endpoints.cart.temp);
@@ -42,6 +45,18 @@ export default function Header() {
     queryKey: ["cart-items"],
     enabled: !!user,
   });
+
+  const handleLanguageChange = (selectedOption) => {
+    if (!selectedOption) return;
+
+    const lang = selectedOption.value;
+    const cookieValue = `/en/${lang}`;
+
+    document.cookie = `googtrans=${cookieValue};path=/`;
+    document.cookie = `googtrans=${cookieValue};domain=${window.location.hostname};path=/`;
+
+    // window.location.reload();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -144,6 +159,15 @@ export default function Header() {
               id="google_translate_element"
               className="absolute bottom-2 right-0"
             ></div>
+
+            {/* <div className="mx-auto max-w-md p-4">
+              <ReactSelect
+                options={allLanguages}
+                placeholder="🌍 Select Language"
+                onChange={handleLanguageChange}
+                isSearchable
+              />
+            </div> */}
 
             {/* Mobile menu toggle */}
             <button
