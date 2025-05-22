@@ -60,7 +60,7 @@ export default function Blogs() {
               Sign up form.
             </DialogDescription>
           </DialogHeader>
-          <div className="relative p-8">
+          <div className="relative p-6">
             <Button
               type="button"
               size="icon"

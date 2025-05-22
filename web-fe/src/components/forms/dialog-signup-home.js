@@ -57,12 +57,12 @@ export default function DialogSignUpHomeForm({ setIsModal }) {
         <h2 className="mb-2 text-lg font-bold text-blue-900 md:text-2xl">
           Sign Up for Exclusive Offers!
         </h2>
-        <p className="mb-4 text-sm text-blue-900 md:text-base">
+        <p className="mb-2 text-sm text-blue-900 md:text-base">
           Join our community and get the latest updates, discounts, and expert
           tips delivered straight to our inbox.
         </p>
 
-        <ul className="mb-6 text-sm text-blue-900 md:text-base">
+        <ul className="mb-4 text-sm text-blue-900 md:text-base">
           <li className="flex items-start">
             <span className="mr-2">•</span> Exclusive discounts and offers
           </li>

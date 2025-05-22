@@ -50,19 +50,19 @@ export default function DialogSignUpBlogForm({ setIsModal }) {
       <div className="relative w-full max-w-md rounded-lg bg-white/80 p-6 shadow-lg">
         {/* 10% OFF Badge */}
         <div className="absolute -right-10 -top-10 flex size-20 flex-col items-center justify-center rounded-full bg-red-500 font-bold text-white md:size-24">
-          <span className="text-3xl">10%</span>
+          <span className="text-2xl">10%</span>
           <span className="-mt-1 text-sm">OFF</span>
         </div>
 
         <h2 className="mb-2 text-lg font-bold text-[#12548D] md:text-2xl">
           Sign Up for Exclusive Offers!
         </h2>
-        <p className="mb-4 text-sm text-[#12548D] md:text-base">
+        <p className="mb-2 text-sm text-[#12548D] md:text-base">
           Join our community and get the latest updates, discounts, and expert
           tips delivered straight to our inbox.
         </p>
 
-        <ul className="mb-6 text-sm text-blue-900 md:text-base">
+        <ul className="mb-4 text-sm text-blue-900 md:text-base">
           <li className="flex items-start">
             <span className="mr-2">•</span> Exclusive discounts and offers
           </li>
