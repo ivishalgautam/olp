@@ -64,7 +64,7 @@ export default function Blogs() {
             <Button
               type="button"
               size="icon"
-              className="absolute left-4 top-10 z-10 rounded-full bg-white p-2 text-black"
+              className="absolute left-4 top-16 z-10 rounded-full bg-white p-2 text-black"
               onClick={() => setIsModal(false)}
             >
               <X size={15} />
