@@ -60,11 +60,12 @@ export default function Footer() {
                     Road, Faridabad-121001, Haryana, INDIA
                   </p>
                   <p className={"leading-6"}>
-                    <span className="font-semibold">Phone:</span> +91 9811632400
+                    <span className="font-semibold">Phone:</span> +91
+                    9811632400, +91 9211924512
                   </p>
                   <p className={"leading-6"}>
                     <span className="font-semibold">Email:</span>{" "}
-                    sales@onlineparts.in
+                    sales@onlineparts.in, global.sales@onlinepartsportal.com
                   </p>
                 </div>
               </div>
